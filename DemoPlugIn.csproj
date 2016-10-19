@@ -77,25 +77,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
-      <HintPath>..\..\..\Binaries\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Binaries\EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule">
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase">
-      <HintPath>..\..\..\Binaries\EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Common.CommonTypes">
-      <HintPath>..\..\..\Binaries\EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Server.DataAccess.Core">
-      <HintPath>..\..\..\Server\BusinessLayer\bin\Debug\EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -106,37 +100,22 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.Composition.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.Prism.Composition.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Mvvm">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Binaries\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -154,10 +133,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="ToolsAndUtilities">
-      <HintPath>..\..\..\Binaries\ToolsAndUtilities.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
