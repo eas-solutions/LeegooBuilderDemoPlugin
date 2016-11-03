@@ -186,8 +186,38 @@ namespace DemoPlugIn.ViewModels
 
 
 
+        private void ExecuteGetCustomDefinitionsOfCompany2()
+        {
+            if (ProjectAndConfigurationModel.SelectedProposal?.Company2ID != null)
+            {
+                var company2Id = ProjectAndConfigurationModel.SelectedProposal.Company2ID.Value;
+                var language = User.CurrentUser.LBUser.Language;
+
+                var customDefinitionValueInfos = ProjectAndConfigurationModel.GetCustomDefinitionValuesInfos(CustomDefinitionTableType.Company, company2Id, language);
+
+                MessageBox.Show($"{customDefinitionValueInfos.Count} CustomDefinitions wurden geladen.");
+            }
 
 
+        }
+
+        private bool CanExecuteGetCustomDefinitionsOfCompany2(out string errorMessage)
+        {
+            if (ProjectAndConfigurationModel.SelectedProposal == null)
+            {
+                errorMessage = "No proposal selected!";
+                return false;
+            }
+
+            if (ProjectAndConfigurationModel.SelectedProposal?.Company2ID == null)
+            {
+                errorMessage = "No company2 set!";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
 
     }
 }

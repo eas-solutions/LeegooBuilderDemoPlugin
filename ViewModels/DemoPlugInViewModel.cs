@@ -268,6 +268,7 @@ namespace DemoPlugIn.ViewModels
             AddCommand(doSomethingGroup, "Filter Elements", ExecuteDoFilterElements, smallGlyph: "find_32x32.png", hint: "Shows how to select some elements", canExecuteDelegate: CanExecuteDoFilterElements);
             AddCommand(doSomethingGroup, "Show BusiInicator", ExecuteShowBusiIndicator, smallGlyph: "process_32x32.png", hint: "Shows the busy indicator vor 5 seconds", canExecuteDelegate: CanExecuteShowBusiIndicator);
             AddCommand(doSomethingGroup, "Execute Script", ExecuteExecuteScript, largeGlyph: "ScriptingEditor_32x32.png", hint: "Executes the Script 'HelloWorld'", canExecuteDelegate: CanExecuteExecuteScript);
+            AddCommand(doSomethingGroup, "Load Custom Definition Values", ExecuteGetCustomDefinitionsOfCompany2, largeGlyph: "find_32x32.png", hint: "Reads custom definition values of company2", canExecuteDelegate: CanExecuteGetCustomDefinitionsOfCompany2);
 
 
             var proposalGroup = new PageGroupModel { Name = "Proposal Group" };
