@@ -21,7 +21,7 @@ namespace DemoPlugIn.ViewModels
 
         private void ExecuteDoSomething()
         {
-            //ProjectAndConfigurationModel.BeginUpdateConfiguration();
+            ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
             // Neue Komponente einfügen
             var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(
