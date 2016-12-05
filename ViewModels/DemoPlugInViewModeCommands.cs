@@ -219,5 +219,31 @@ namespace DemoPlugIn.ViewModels
             return true;
         }
 
+
+        private void ExecuteLoadGlobalAttributes()
+        {
+            ProjectAndConfigurationModel.LoadGlobalAttributes(SelectedConfigurationTreeItem.Value);
+            MessageBox.Show($"{SelectedConfigurationTreeItem.Value.GlobalAttributes.Count} globale Merkmale wurden geladen.");
+        }
+
+
+        private bool CanExecuteLoadGlobalAttributes(out string errorMessage)
+        {
+            if (SelectedConfigurationTreeItem == null)
+            {
+                errorMessage = "No configurationitem selected!";
+                return false;
+            }
+
+            if (!SelectedConfigurationTreeItem.Value.HasConfigurator)
+            {
+                errorMessage = "No configurator selected!";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
     }
 }
