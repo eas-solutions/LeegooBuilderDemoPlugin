@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.Composition;
+using EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
-using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.ServiceLocation;
+using Prism.Mef.Modularity;
+using Prism.Modularity;
 
-namespace DemoPlugIn
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
 {
     [ModuleExport("DemoPlugInModule", typeof(DemoPlugInModuleInit))]
     public class DemoPlugInModuleInit : IModule

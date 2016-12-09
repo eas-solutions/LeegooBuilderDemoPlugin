@@ -1,4 +1,4 @@
-﻿<mvvm:UserSettingsAwareView x:Class="DemoPlugIn.Views.DemoPlugInView"
+﻿<mvvm:UserSettingsAwareView x:Class="EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Views.DemoPlugInView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -40,12 +40,12 @@
 
             <!--CellTemplate für die Spalte HasAnySpecializedDescription. Ein Icon soll darstgestellt werden, wenn eine spezialisierte Benennung existiert.-->
             <DataTemplate x:Key="SpecializedDescriptionTemplate">
-                <Image Margin="0,2,0,0" Source="/DemoPlugIn;component/Images/TreeIcons/SpecializedDescription_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedDescription, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
+                <Image Margin="0,2,0,0" Source="/EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule;component/Images/TreeIcons/SpecializedDescription_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedDescription, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
             </DataTemplate>
 
             <!--CellTemplate für die Spalte HasAnySpecializedLongText. Ein Icon soll darstgestellt werden, wenn ein spezialisiertet Langtext existiert.-->
             <DataTemplate x:Key="SpecializedLongTextTemplate">
-                <Image Margin="0,2,0,0" Source="/DemoPlugIn;component/Images/TreeIcons/SpecializedLongText_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedLongText, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
+                <Image Margin="0,2,0,0" Source="/EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule;component/Images/TreeIcons/SpecializedLongText_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedLongText, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
             </DataTemplate>
 
         </ResourceDictionary>

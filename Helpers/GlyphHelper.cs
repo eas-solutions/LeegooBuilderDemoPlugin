@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace DemoPlugIn.Helpers
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers
 {
     public class GlyphHelper
     {

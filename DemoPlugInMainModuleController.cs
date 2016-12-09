@@ -1,18 +1,17 @@
-﻿using DemoPlugIn.ViewModels;
+﻿using System;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.MVVM;
+using EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
-using Microsoft.Practices.Prism.Regions;
+using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
+using EAS.LeegooBuilder.Common.CommonTypes.Models;
+using EAS.LeegooBuilder.Server.DataAccess.Core;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using Microsoft.Practices.ServiceLocation;
-using System;
+using Prism.Regions;
+using DemoPlugInViewModel = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels.DemoPlugInViewModel;
 
-namespace DemoPlugIn
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
 {
-    using EAS.LeegooBuilder.Client.GUI.Modules.MainModule;
-    using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
-    using EAS.LeegooBuilder.Common.CommonTypes.Models;
-    using EAS.LeegooBuilder.Server.DataAccess.Core;
-    using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
-
     public class DemoPlugInMainModuleController : ModuleControllerBase
     {
         private const string DemoPlugInRegionName = "DemoPlugInRegion";
@@ -40,7 +39,7 @@ namespace DemoPlugIn
             //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("Proposals"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
             //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("ProductAdministration"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
             //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
-            var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
+            var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
 
             demoPlugInNavigationBarItem.IsEnabled = false;
 

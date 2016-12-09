@@ -1,20 +1,17 @@
-﻿using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 
-
-namespace DemoPlugIn.ViewModels
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 {
     partial class DemoPlugInViewModel
     {

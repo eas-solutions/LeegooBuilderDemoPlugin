@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DemoPlugIn.Properties {
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

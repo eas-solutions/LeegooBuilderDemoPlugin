@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DemoPlugIn.Properties {
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DemoPlugIn.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DemoPlugIn.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

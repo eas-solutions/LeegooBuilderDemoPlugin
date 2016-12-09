@@ -1,15 +1,11 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using DemoPlugIn.ViewModels;
-using EAS.LeegooBuilder.Server.DataAccess.Core;
-using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
-using Microsoft.Practices.Prism.PubSubEvents;
+using EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels;
+using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
 using Microsoft.Practices.ServiceLocation;
+using Prism.Events;
 
-namespace DemoPlugIn.Views
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Views
 {
-    using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
-
     /// <summary>
     /// Interaktionslogik für DemoPlugInView.xaml
     /// </summary>

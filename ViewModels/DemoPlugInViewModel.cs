@@ -1,6 +1,12 @@
-﻿using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Media;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
-using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
@@ -8,18 +14,11 @@ using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Media;
+using Prism.Events;
+using Prism.Regions;
+using GlyphHelper = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers.GlyphHelper;
 
-
-namespace DemoPlugIn.ViewModels
+namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 {
     public class ExecuteConfigurationTreeSmartUpdateEvent : PubSubEvent<object>
     {
@@ -37,10 +36,10 @@ namespace DemoPlugIn.ViewModels
         {
             ImageSource sg = null;
             if (smallGlyph != null)
-                sg = Helpers.GlyphHelper.GetGlyph("/Images/Ribbon/" + smallGlyph, this);
+                sg = GlyphHelper.GetGlyph("/Images/Ribbon/" + smallGlyph, this);
             ImageSource lg = null;
             if (largeGlyph != null)
-                lg = Helpers.GlyphHelper.GetGlyph("/Images/Ribbon/" + largeGlyph, this);
+                lg = GlyphHelper.GetGlyph("/Images/Ribbon/" + largeGlyph, this);
 
             CommandModel command = new CommandModel(action, canExecuteDelegate)
             {
