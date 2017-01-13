@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -242,5 +243,36 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             return true;
         }
 
+
+        private void ExecuteGetProposalCustomDefinitionValues()
+        {
+            var proposal = ProjectAndConfigurationModel.SelectedProposal; // nur der Übersicht halber (s.u.)
+            var sampleCustomFieldName = "OMCEUNETGROSSFACTOR";
+
+
+
+            // CustomDefinitions laden
+            // Das ist nur einmal erforderlich. Es handelt sich nur um die Definition. Die Werte stehen in der Proposal-Instanz.
+            var customDefinitions = ProjectAndConfigurationModel.GetCustomDefinitionsInfos(CustomDefinitionTableType.Proposal);
+
+
+            var sampleCustomDefinition = customDefinitions.FirstOrDefault(item => item.CustomFieldName.Equals(sampleCustomFieldName, StringComparison.InvariantCultureIgnoreCase));
+            if (sampleCustomDefinition == null)
+                throw new KeyNotFoundException($"Could not find {sampleCustomFieldName}");
+
+
+            var customDefinitionValue = proposal.ProposalCustomDefinitionValues.FirstOrDefault(item => item.ProposalCustomDefinitionID == sampleCustomDefinition.ID);
+            var value = customDefinitionValue == null ? string.Empty : customDefinitionValue.StringValue;
+
+
+            MessageBox.Show($"Wert des Custom Definition Values {sampleCustomFieldName}: {value}");
+
+        }
+
+        private bool CanExecuteGetProposalCustomDefinitionValues(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
     }
 }
