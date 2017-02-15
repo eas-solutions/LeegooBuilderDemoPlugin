@@ -7,10 +7,12 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
+using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 {
@@ -94,6 +96,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             MessageBox.Show(ProjectAndConfigurationModel.SelectedProposal.ProposalID);
         }
 
+
         private bool CanExecuteShowProposalId(out string errorMessage)
         {
             if (ProjectAndConfigurationModel.SelectedProposal == null)
@@ -102,6 +105,26 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 return false;
             }
 
+            errorMessage = string.Empty;
+            return true;
+        }
+
+
+        private void ExecuteToggleLockProposal()
+        {
+            LockProposal(ProjectAndConfigurationModel.SelectedProposal, this._lockProposalToggleButtonCommand.IsToggleChecked ?? false);
+        }
+
+        private void LockProposal(Proposal proposal, bool lockingMode)
+        {
+            Guid? lockedByUserId;
+            var errorInfo = lockingMode ? ProjectAndConfigurationModel.SetLockOnProposal(proposal, LockingMode.Lock, out lockedByUserId) : ProjectAndConfigurationModel.SetLockOnProposal(proposal, LockingMode.Unlock, out lockedByUserId);
+            if (errorInfo != null) throw new Exception(errorInfo.Message);
+        }
+
+
+        private bool CanExecuteToggleLockProposal(out string errorMessage)
+        {
             errorMessage = string.Empty;
             return true;
         }

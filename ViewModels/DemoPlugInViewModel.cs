@@ -28,6 +28,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public partial class DemoPlugInViewModel : UserSettingsAwareClientViewModelBase
     {
+        private DXToggleButtonCommand _lockProposalToggleButtonCommand;
+
+
         #region RibbonHelpers
 
         protected new CommandModel AddCommand(PageGroupModel pageGroup, string caption, Action action, string smallGlyph = null,
@@ -271,10 +274,25 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             AddCommand(doSomethingGroup, "Load global attributes", ExecuteLoadGlobalAttributes, largeGlyph: "find_32x32.png", hint: "Loads the global attributes", canExecuteDelegate: CanExecuteLoadGlobalAttributes);
             AddCommand(doSomethingGroup, "Get proposal custom definition values", ExecuteGetProposalCustomDefinitionValues, smallGlyph: "find_32x32.png", hint: "Reads custom definition values of the proposal", canExecuteDelegate: CanExecuteGetProposalCustomDefinitionValues);
 
+
+
             var proposalGroup = new PageGroupModel { Name = "Proposal Group" };
             page.Groups.Add(proposalGroup);
 
             AddCommand(proposalGroup, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Shows the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
+
+
+
+            _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
+            {
+                Caption = Translator.Translate("LockProposal"),
+                LargeGlyph = GlyphHelper.GetGlyph("/Images/Ribbon/locked_32x32.png", this),
+                Hint = Translator.Translate("LockProposalHint"),
+                GroupIndex = 53,
+                IsToggleChecked = false
+            };
+            proposalGroup.Commands.Add(_lockProposalToggleButtonCommand);
+
 
 
             var sqlGroup = new PageGroupModel { Name = "Database Group" };
