@@ -297,5 +297,42 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             errorMessage = string.Empty;
             return true;
         }
+
+
+        private void ExecuteSetLocalAttributes()
+        {
+            var easPriceList = SelectedConfigurationTreeItem.Parent.Value; //test
+            var easPriceListElement = SelectedConfigurationTreeItem.Value.Element; //test
+
+
+            var orderedItem = easPriceList.Children.FirstOrDefault(x => x.InternalElementID.HasValue && x.InternalElementID.Value == easPriceListElement.InternalElementID);
+
+            // Check if there is an ordered item present
+            if (orderedItem == null)
+                MessageBox.Show("null!");
+
+
+            var localAttributeInfos = ProjectAndConfigurationModel.GetLocalAttributes(SelectedConfigurationTreeItem.Value.ComponentID, SelectedConfigurationTreeItem.Value.Element.InternalElementID, User.CurrentUser.LBUser.Language);
+
+
+            var localAttribute = localAttributeInfos.First();//OrDefault(x => x.AttributeName == quantityId);
+            localAttribute.DataValue = "test2";
+            ProjectAndConfigurationModel.SetLocalAttribute(SelectedConfigurationTreeItem.Value.ComponentID, localAttribute);
+        }
+
+
+        private bool CanExecuteSetLocalAttributes(out string errorMessage)
+        {
+            if (SelectedConfigurationTreeItem == null)
+            {
+                errorMessage = "No configurationitem selected!";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
+
     }
 }
