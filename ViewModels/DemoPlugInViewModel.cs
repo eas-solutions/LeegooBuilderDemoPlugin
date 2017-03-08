@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
@@ -198,7 +199,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
                                                            ProjectAndConfigurationModel.SelectedProposal.PropertyChanged += SelectedProposalOnPropertyChanged;
                                                            ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.OnTreeItemChanged += RootOnOnTreeItemChanged;
+                                                           ProjectAndConfigurationModel.SelectedProposal.OnConfigured += OnConfigured;
+                                                           ProjectAndConfigurationModel.SelectedProposal.OnCalculated += OnCalculated;
 
+                                                           // Hinweis:
+                                                           // Neue Events müssen in ViewClosed() wieder entfernt werden.
 
                                                            EndProgressBar();
                                                        });
@@ -211,6 +216,16 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             base.OnNavigatedTo(navigationContext);
         }
 
+        private void OnConfigured(TreeStructureItem<ConfigurationItem> configurationItem)
+        {
+            MessageBox.Show("Configuration has been configured.");
+        }
+
+        private void OnCalculated()
+        {
+            MessageBox.Show("Configuration has been calculated.");
+        }
+
 
         /// <summary>
         /// Der User hat gerade unser PlugIn verlassen und ein anderes Module geöffnet
@@ -220,7 +235,15 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             base.OnNavigatedFrom(navigationContext);
         }
 
+        public override void ViewClosed()
+        {
+            ProjectAndConfigurationModel.SelectedProposal.PropertyChanged -= SelectedProposalOnPropertyChanged;
+            ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.OnTreeItemChanged -= RootOnOnTreeItemChanged;
+            ProjectAndConfigurationModel.SelectedProposal.OnConfigured -= OnConfigured;
+            ProjectAndConfigurationModel.SelectedProposal.OnCalculated -= OnCalculated;
 
+            base.ViewClosed();
+        }
 
 
         private void RootOnOnTreeItemChanged(object sender, TreeStructureEventArgs<ConfigurationItem> treeStructureEventArgs)
