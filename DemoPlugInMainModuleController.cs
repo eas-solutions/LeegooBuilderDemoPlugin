@@ -36,10 +36,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
             // Position des NavigationBarItems innerhalb des Bereichs. 0 steht für ganz oben.
             const int position = 3;
 
-            //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("Proposals"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
+            var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("Proposals"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
             //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("ProductAdministration"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
             //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, DemoPlugIn.Helpers.GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this));
-            var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
+            //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
 
             demoPlugInNavigationBarItem.IsEnabled = false;
 

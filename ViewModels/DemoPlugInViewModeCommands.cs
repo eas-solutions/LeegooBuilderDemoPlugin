@@ -93,7 +93,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         private void ExecuteShowProposalId()
         {
-            MessageBox.Show(ProjectAndConfigurationModel.SelectedProposal.ProposalID);
+            MessageBox.Show(ProjectAndConfigurationModel.SelectedProposal.ProposalID+Environment.NewLine+
+                ProjectAndConfigurationModel.SelectedProposal.IsProposalViewOnlyByUser);
         }
 
 
