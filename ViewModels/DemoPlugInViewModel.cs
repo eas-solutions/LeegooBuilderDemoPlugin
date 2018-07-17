@@ -213,6 +213,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             SetVisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree();
             SetVisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree();
 
+
+            // Programmereignisskript OnNavigatedTo() ausführen
+            ProjectAndConfigurationModel.FireOnNavigatedTo(ProjectAndConfigurationModel.SelectedProposal, NavigationTargets.ProjectAndProposals);
+
+
             base.OnNavigatedTo(navigationContext);
         }
 

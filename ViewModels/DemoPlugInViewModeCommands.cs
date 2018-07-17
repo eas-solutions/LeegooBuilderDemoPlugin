@@ -10,6 +10,7 @@ using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
+using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
@@ -24,10 +25,13 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
             // Neue Komponente einfügen
-            var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(
-                        Guid.Parse("{6552C0AE-FCE3-E511-8B07-005056AB4E2A}"),  //"@_SCKCN",
-                        SelectedConfigurationTreeItem.Value.ComponentID,
-                        TreeStructureItemInsertMode.AddFirstChild);
+            var parameters = new CreateConfigurationItemParameters(
+                Guid.Parse("{6552C0AE-FCE3-E511-8B07-005056AB4E2A}"),  //"@_SCKCN",
+                SelectedConfigurationTreeItem.Value.ComponentID,
+                TreeStructureItemInsertMode.AddFirstChild);
+
+            var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(parameters);
+
             ProjectAndConfigurationModel.EndUpdateConfiguration();
 
 
@@ -188,7 +192,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
                 MessageBox.Show(string.Format("Going to start Script '{0}'", script.Name));
 
-                var scriptResult = ProjectAndConfigurationModel.ExecuteCustomScript(script.ScriptID, args);
+                var scriptResult = ProjectAndConfigurationModel.ExecuteCustomScript(script.ScriptsKpId, args);
 
                 var resultMessage = string.Format("Script '{0}' was executed.", script.Name);
                 if (scriptResult != null)
