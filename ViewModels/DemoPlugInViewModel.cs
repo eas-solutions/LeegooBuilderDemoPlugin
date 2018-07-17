@@ -12,6 +12,7 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
+using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
@@ -34,7 +35,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         #region RibbonHelpers
 
-        protected new CommandModel AddCommand(PageGroupModel pageGroup, string caption, Action action, string smallGlyph = null,
+        private new CommandModel AddCommand(PageGroupModel pageGroup, string caption, Action action, string smallGlyph = null,
             string largeGlyph = null, bool isEnabled = false, string hint = null, KeyGesture keyGesture = null,
             CheckConditionsDelegate canExecuteDelegate = null)
         {
@@ -71,27 +72,27 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </remarks>
         public TreeStructureItem<ConfigurationItem> SelectedConfigurationTreeItem
         {
-            get { return selectedConfigurationTreeItem; }
+            get => _selectedConfigurationTreeItem;
             set
             {
-                if (selectedConfigurationTreeItem == value) return;
+                if (_selectedConfigurationTreeItem == value) return;
 
-                selectedConfigurationTreeItem = value;
-                this.OnPropertyChanged(() => this.SelectedConfigurationTreeItem);
+                _selectedConfigurationTreeItem = value;
+                OnPropertyChanged(() => SelectedConfigurationTreeItem);
 
 
-                if (selectedConfigurationTreeItem == null)
+                if (_selectedConfigurationTreeItem == null)
                     return;
 
-                if ((selectedConfigurationTreeItem.Value.LocalAttributes == null) ||
-                    (selectedConfigurationTreeItem.Value.HasConfigurator && (selectedConfigurationTreeItem.Value.GlobalAttributes == null)))
+                if ((_selectedConfigurationTreeItem.Value.LocalAttributes == null) ||
+                    (_selectedConfigurationTreeItem.Value.HasConfigurator && (_selectedConfigurationTreeItem.Value.GlobalAttributes == null)))
                 {
-                    ProjectAndConfigurationModel.LoadAttributes(selectedConfigurationTreeItem);
+                    ProjectAndConfigurationModel.LoadAttributes(_selectedConfigurationTreeItem);
                 }
             }
         }
 
-        private TreeStructureItem<ConfigurationItem> selectedConfigurationTreeItem;
+        private TreeStructureItem<ConfigurationItem> _selectedConfigurationTreeItem;
 
 
         /// <summary>
@@ -102,11 +103,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </remarks>
         public bool VisibilityOfEditStateIndicationColumnInConfigurationTree
         {
-            get { return this.visibilityOfEditStateIndicationColumnInConfigurationTree; }
-            set { this.SetProperty(ref this.visibilityOfEditStateIndicationColumnInConfigurationTree, value); }
+            get => _visibilityOfEditStateIndicationColumnInConfigurationTree;
+            set => SetProperty(ref _visibilityOfEditStateIndicationColumnInConfigurationTree, value);
         }
 
-        private bool visibilityOfEditStateIndicationColumnInConfigurationTree;
+        private bool _visibilityOfEditStateIndicationColumnInConfigurationTree;
 
 
         private void SetVisibilityOfEditStateIndicationColumnInConfigurationTree()
@@ -122,11 +123,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </summary>
         public bool VisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree
         {
-            get { return this.visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree; }
-            set { this.SetProperty(ref this.visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree, value); }
+            get => _visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree;
+            set => SetProperty(ref _visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree, value);
         }
 
-        private bool visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree;
+        private bool _visibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree;
 
         private void SetVisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree()
         {
@@ -140,11 +141,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </summary>
         public bool VisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree
         {
-            get { return this.visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree; }
-            set { this.SetProperty(ref this.visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree, value); }
+            get => _visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree;
+            set => SetProperty(ref _visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree, value);
         }
 
-        private bool visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree;
+        private bool _visibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree;
 
         private void SetVisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree()
         {
@@ -157,11 +158,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </summary>
         public bool VisibilityOfAnchorColumnInConfigurationTree
         {
-            get { return this.visibilityOfAnchorColumnInConfigurationTree; }
-            set { this.SetProperty(ref this.visibilityOfAnchorColumnInConfigurationTree, value); }
+            get => _visibilityOfAnchorColumnInConfigurationTree;
+            set => SetProperty(ref _visibilityOfAnchorColumnInConfigurationTree, value);
         }
 
-        private bool visibilityOfAnchorColumnInConfigurationTree;
+        private bool _visibilityOfAnchorColumnInConfigurationTree;
 
 
         #endregion TreeListControl-Stuff
@@ -214,8 +215,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             SetVisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree();
 
 
-            // Programmereignisskript OnNavigatedTo() ausführen
-            ProjectAndConfigurationModel.FireOnNavigatedTo(ProjectAndConfigurationModel.SelectedProposal, NavigationTargets.ProjectAndProposals);
+            // Programmereignisskript OnNavigatedTo() feuern
+            ProjectAndConfigurationModel.FireOnNavigatedTo(ProjectAndConfigurationModel.SelectedProposal, NavigationTargets.PlugIn, Name);
 
 
             base.OnNavigatedTo(navigationContext);
@@ -237,8 +238,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         /// </summary>
         public override void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            // DoSomething()
             base.OnNavigatedFrom(navigationContext);
         }
+
 
         public override void ViewClosed()
         {
@@ -265,13 +268,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
 
         // Caption der Region (oben)
-        public override string Caption
-        {
-            get
-            {
-                return "DemoPlugIn blablabla";
-            }
-        }
+        public override string Caption => "DemoPlugIn blablabla";
+
 
         // Text auf dem Tabpage (unten)
         protected override void SetUpUI()
@@ -340,30 +338,30 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         {
             get
             {
-                if (this.listOfProjects == null)
+                if (_listOfProjects == null)
                 {
-                    this.listOfProjects = new List<string>();
+                    _listOfProjects = new List<string>();
 
                     var projects = ProjectAndConfigurationModel.GetProjectInfos();
                     foreach (var project in projects)
                     {
-                        this.listOfProjects.Add(project.Description);
+                        _listOfProjects.Add(project.Description);
                     }
                 }
-                return this.listOfProjects;
+                return _listOfProjects;
             }
         }
 
-        private List<string> listOfProjects;
+        private List<string> _listOfProjects;
 
 
         #region IDisposable
 
-        private bool disposed = false;
+        private bool _disposed = false;
 
         protected override void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
@@ -372,7 +370,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 // Release unmanaged resources.
                 // Set large fields to null.
                 // Call Dispose on your base class.
-                disposed = true;
+                _disposed = true;
             }
             base.Dispose(disposing);
         }
