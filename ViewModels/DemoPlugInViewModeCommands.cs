@@ -30,7 +30,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 SelectedConfigurationTreeItem.Value.ComponentID,
                 TreeStructureItemInsertMode.AddFirstChild);
 
-            var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(parameters);
+            var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(parameters, out var errorMessage);
 
             ProjectAndConfigurationModel.EndUpdateConfiguration();
 
