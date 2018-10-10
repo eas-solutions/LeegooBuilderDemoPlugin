@@ -78,23 +78,26 @@
     <Reference Include="DevExpress.Xpf.Ribbon.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Common.CommonTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EAS.LeegooBuilder.Common.CommonTypes, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Common.DataTransferObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="EAS.LeegooBuilder.Common.DataTransferObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Common.DataTransferObjects.dll</HintPath>
+    </Reference>
     <Reference Include="EAS.LeegooBuilder.Server.DataAccess.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LeegooBuilder\Main\Binaries\EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
