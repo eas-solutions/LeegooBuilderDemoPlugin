@@ -71,7 +71,11 @@
 
 
         <!-- Konfigurationsbaum (erfordert DevExpress, wenn nicht vorhanden, bitte auskommentieren -->
-        <dxg:TreeListControl Name="ConfigurationTreeList" Height="300" Margin="2" ItemsSource="{Binding ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.RootTreeItem.Children}" AutoPopulateColumns="False">
+        <dxg:TreeListControl Name="ConfigurationTreeList"
+                             Height="300"
+                             Margin="2"
+                             ItemsSource="{Binding ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.RootTreeItem.Children}"
+                             AutoPopulateColumns="False">
 
             <dxg:TreeListControl.Resources>
 
@@ -147,17 +151,23 @@
             </dxg:TreeListControl.Columns>
 
             <dxg:TreeListControl.View>
-                <dxg:TreeListView TreeDerivationMode="ChildNodesSelector" ShowNodeImages="True" NodeImageSelector="{StaticResource TreeItemImageSelector}"
-                              ChildNodesSelector="{StaticResource ConfigurationTreeItemChildrenSelector}" FocusedRow="{Binding SelectedConfigurationTreeItem, Mode=TwoWay}" AutoExpandAllNodes="True" 
-                              AllowEditing="False" ShowSearchPanelMode="Never" RowStyle="{StaticResource RowBackgroundAoSelect}">
+                <dxg:TreeListView TreeDerivationMode="ChildNodesSelector"
+                                  ShowNodeImages="True"
+                                  NodeImageSelector="{StaticResource TreeItemImageSelector}"
+                                  ChildNodesSelector="{StaticResource ConfigurationTreeItemChildrenSelector}"
+                                  FocusedRow="{Binding SelectedConfigurationTreeItem, Mode=TwoWay}"
+                                  AutoExpandAllNodes="True"
+                                  AllowEditing="False"
+                                  ShowSearchPanelMode="Never"
+                                  RowStyle="{StaticResource RowBackgroundAoSelect}">
 
                     <dxmvvm:Interaction.Behaviors>
 
                         <!--Anchoring Behavior-->
-                        <vbhs:TreeStructureAnchorBehavior TreeStructure="{Binding ProjectAndConfigurationModel.SelectedProposal.Configuration}"/>
+                        <!--<vbhs:TreeStructureAnchorBehavior TreeStructure="{Binding ProjectAndConfigurationModel.SelectedProposal.Configuration}"/>-->
 
                         <!--Expand/Collapse Behavior-->
-                        <vbhs:TreeListExpandedBehavior/>
+                        <!--<vbhs:TreeListExpandedBehavior/>-->
 
                     </dxmvvm:Interaction.Behaviors>
 
