@@ -16,6 +16,7 @@ using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Global;
 using Prism.Events;
 using Prism.Regions;
 using GlyphHelper = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers.GlyphHelper;
@@ -193,7 +194,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             {
                 Task.Factory.ExecuteAndWaitNonBlocking(() =>
                                                        {
-                                                           StartProgressBar("LoadingConfiguration");
+                                                           // 2019-01-11, vi: ProgressBar einschalten, wenn es sich lohnt. Siehe Schwellwert in den SE.
+                                                           var threshold = Convert.ToInt16("0" + ProjectAndConfigurationModel?.GetSysSettingsParameterValue(SysSettingsParameter.ShowBusyIndicatorWhenLoadingConfigurationThreshold));
+                                                           if (ProjectAndConfigurationModel?.SelectedProposal?.ComponentCount >= threshold)
+                                                               StartProgressBar("LoadingConfiguration");
+
                                                            ProjectAndConfigurationModel.LoadConfiguration(ProjectAndConfigurationModel.SelectedProposal);
                                                            ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView.ViewName,
                                                                Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
