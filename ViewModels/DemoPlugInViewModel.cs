@@ -13,6 +13,7 @@ using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
+using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
