@@ -23,7 +23,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\LeegooBuilder\Main\Binaries\</OutputPath>
+    <OutputPath>..\..\..\LeegooBuilder\Main\Binaries\PlugIns\DemoPlugIn\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -234,6 +234,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Ribbon\locked_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Ribbon\CreateProposal_32x32.png" />
+    <Resource Include="Images\Ribbon\CustomProperty_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

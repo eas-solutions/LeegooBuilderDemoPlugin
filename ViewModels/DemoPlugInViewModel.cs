@@ -305,16 +305,17 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             AddCommand(doSomethingGroup, "Load Custom Definition Values", ExecuteGetCustomDefinitionsOfCompany2, largeGlyph: "find_32x32.png", hint: "Reads custom definition values of company2", canExecuteDelegate: CanExecuteGetCustomDefinitionsOfCompany2);
             AddCommand(doSomethingGroup, "Load global attributes", ExecuteLoadGlobalAttributes, largeGlyph: "find_32x32.png", hint: "Loads the global attributes", canExecuteDelegate: CanExecuteLoadGlobalAttributes);
             AddCommand(doSomethingGroup, "Get proposal custom definition values", ExecuteGetProposalCustomDefinitionValues, smallGlyph: "find_32x32.png", hint: "Reads custom definition values of the proposal", canExecuteDelegate: CanExecuteGetProposalCustomDefinitionValues);
-            AddCommand(doSomethingGroup, "Set local attributes", ExecuteSetLocalAttributes, smallGlyph: "upgrade_32x32.png", hint: "Sets some local attributesl", canExecuteDelegate: CanExecuteSetLocalAttributes);
-
+            AddCommand(doSomethingGroup, "Set local attributes", ExecuteSetLocalAttributes, smallGlyph: "upgrade_32x32.png", hint: "Sets some local attributes", canExecuteDelegate: CanExecuteSetLocalAttributes);
 
 
             var proposalGroup = new PageGroupModel { Name = "Proposal Group" };
             page.Groups.Add(proposalGroup);
 
             AddCommand(proposalGroup, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Shows the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
+            AddCommand(proposalGroup, "Create Proposal", ExecuteCreateProposal, largeGlyph: "CreateProposal_32x32.png", hint: "Creates a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
+            AddCommand(proposalGroup, "Set Custom Property", ExecuteSetProposalCustomProperty, largeGlyph: "CustomProperty_32x32.png", hint: "Sets a custom definition value", canExecuteDelegate: CanExecuteSetProposalCustomProperty);
 
-
+         
 
             _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
             {

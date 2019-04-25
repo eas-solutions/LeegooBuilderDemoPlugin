@@ -9,6 +9,7 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
+using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
@@ -23,6 +24,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         private void ExecuteDoSomething()
         {
+
             ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
             // Neue Komponente einfügen
@@ -32,6 +34,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 TreeStructureItemInsertMode.AddFirstChild);
 
             var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(parameters, out var errorMessage);
+
+
+
 
             ProjectAndConfigurationModel.EndUpdateConfiguration();
 
@@ -98,7 +103,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         private void ExecuteShowProposalId()
         {
-            MessageBox.Show(ProjectAndConfigurationModel.SelectedProposal.ProposalID+Environment.NewLine+
+            MessageBox.Show(ProjectAndConfigurationModel.SelectedProposal.ProposalID + Environment.NewLine +
                 ProjectAndConfigurationModel.SelectedProposal.IsProposalViewOnlyByUser);
         }
 
@@ -116,10 +121,75 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         }
 
 
+        private void ExecuteCreateProposal()
+        {
+            var creationMode = NewProposalCreationMode.NewProposalWithoutReference;
+            Proposal sourceProposal = null; // wird nur bei Nachtrag/Kopie aus Musterbeleg benötigt
+            var destinationProject = ProjectAndConfigurationModel.GetProject(ProjectAndConfigurationModel.SelectedProjectInfo.InternalProjectID);
+
+
+            var createNewProposalIdArgs = new CreateNewProposalIdArgs { CreationMode = creationMode, SourceProposal = sourceProposal, DestinationProject = destinationProject };
+            var newProposalId = ProjectAndConfigurationModel.GenerateNewProposalId(creationMode, destinationProject.InternalProjectID, sourceProposal?.InternalProposalID ?? Guid.Empty, out var proposalIdMainPart, out var proposalIdAppendixPart, out var editableDefinition);
+
+            var newProposal = ProjectAndConfigurationModel.CreateNewProposal(createNewProposalIdArgs,
+                newProposalId,
+                proposalIdMainPart,
+                proposalIdAppendixPart,
+                User.CurrentUser.LBUser.UserID,
+                out var errorMessageInfo);
+
+
+            // Grundkonfiguration anlegen
+            var mainConfigurations = ProjectAndConfigurationModel.LoadConstructionKitHeaders(User.CurrentUser.LBUser.Language, MasterStructureType.MainConfiguration);
+            var usedMainConfiguration = mainConfigurations?.First(); // hier in geeigneter Weise einen Eintrag ermitteln
+            ProjectAndConfigurationModel.InitializeConfigurationFromConstructionKit(newProposal, usedMainConfiguration);
+
+        }
+
+
+        private bool CanExecuteCreateProposal(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+
+        private void ExecuteSetProposalCustomProperty()
+        {
+
+            var newValue = "test123";
+
+            var proposal = ProjectAndConfigurationModel.SelectedProposal;
+            var customDefinitionValuesInfos = ProjectAndConfigurationModel.GetCustomDefinitionValuesInfos(CustomDefinitionTableType.Proposal, proposal.InternalProposalID, "en-GB");
+            var customDefinitionValueInfo = customDefinitionValuesInfos.FirstOrDefault(item => item.CustomFieldName.Equals("OpportunityId", StringComparison.CurrentCultureIgnoreCase));
+
+
+            if ((customDefinitionValueInfo != null) && (customDefinitionValueInfo.StringValue != newValue))
+            {
+                customDefinitionValueInfo.StringValue = newValue;
+                ProjectAndConfigurationModel.SaveCustomDefinitionValueInfos(customDefinitionValueInfo);
+            }
+        }
+
+
+        private bool CanExecuteSetProposalCustomProperty(out string errorMessage)
+        {
+            if (ProjectAndConfigurationModel.SelectedProposal == null)
+            {
+                errorMessage = "No proposal selected";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
+
         private void ExecuteToggleLockProposal()
         {
             LockProposal(ProjectAndConfigurationModel.SelectedProposal, this._lockProposalToggleButtonCommand.IsToggleChecked ?? false);
         }
+
 
         private void LockProposal(Proposal proposal, bool lockingMode)
         {
@@ -177,6 +247,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         private void ExecuteExecuteScript()
         {
+
             var scriptName = "HelloWorld";
             var script = ProjectAndConfigurationModel.LoadScriptByName(scriptName);
             if (script == null)
