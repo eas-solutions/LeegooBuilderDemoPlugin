@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
-using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
+using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Views;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
+using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Global;
+using Microsoft.Practices.ServiceLocation;
 using Prism.Events;
+using Prism.Mvvm;
 using Prism.Regions;
 using GlyphHelper = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers.GlyphHelper;
+using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.MessageBox;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 {
@@ -177,7 +182,20 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                                   IUserSettingsService userSettingsService)
             : base(eventAggregator, projectAndConfigurationModel, translator, userSettingsService)
         {
+            TraceLogHelper.Log("DemoPlugInViewModel: Initialization (start)");
+
             // Initialisierung des ViewModels
+            serviceLocator = ServiceLocator.Current;
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Einige Commands des ProjectsAndProposalsViewModels überschreiben.
+                var test = ProjectsAndProposalsViewModel.RibbonViewModel.Categories;
+
+            });
+
+            TraceLogHelper.Log("DemoPlugInViewModel: Initialization (end)");
+
         }
 
 

@@ -20,7 +20,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
         private IRegion DemoPlugInRegion { get; set; }
 
         /// <summary>
-        /// Konstrutkor
+        /// Konstruktor
         /// </summary>
         public DemoPlugInMainModuleController()
         {

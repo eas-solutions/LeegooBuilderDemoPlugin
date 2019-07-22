@@ -7,12 +7,15 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
+using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
+using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Views;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
+using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
@@ -21,6 +24,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 {
     partial class DemoPlugInViewModel
     {
+        private ProjectsAndProposalsViewModel ProjectsAndProposalsViewModel => _projectsAndProposalsViewModel ?? (_projectsAndProposalsViewModel = serviceLocator.GetInstance<MainModule.ViewModels.ProjectsAndProposalsViewModel>());
+
+        private ProjectsAndProposalsViewModel _projectsAndProposalsViewModel;
+
 
         private void ExecuteDoSomething()
         {
@@ -123,6 +130,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         private void ExecuteCreateProposal()
         {
+
             var creationMode = NewProposalCreationMode.NewProposalWithoutReference;
             Proposal sourceProposal = null; // wird nur bei Nachtrag/Kopie aus Musterbeleg benötigt
             var destinationProject = ProjectAndConfigurationModel.GetProject(ProjectAndConfigurationModel.SelectedProjectInfo.InternalProjectID);
@@ -143,6 +151,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             var mainConfigurations = ProjectAndConfigurationModel.LoadConstructionKitHeaders(User.CurrentUser.LBUser.Language, MasterStructureType.MainConfiguration);
             var usedMainConfiguration = mainConfigurations?.First(); // hier in geeigneter Weise einen Eintrag ermitteln
             ProjectAndConfigurationModel.InitializeConfigurationFromConstructionKit(newProposal, usedMainConfiguration);
+
+            //ProjectAndConfigurationModel.SaveProposal2(newProposal);
+
+            // Belegliste aktualisieren
+            ProjectsAndProposalsViewModel.UpdateProposalList(ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.Insert);
 
         }
 

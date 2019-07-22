@@ -22,6 +22,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
         public DemoPlugInModuleInit(IServiceLocator serviceLocator)
         {
             this.serviceLocator = serviceLocator;
+            
         }
 
         #region IModule Members
