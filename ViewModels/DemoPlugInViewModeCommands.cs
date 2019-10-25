@@ -144,6 +144,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 proposalIdMainPart,
                 proposalIdAppendixPart,
                 User.CurrentUser.LBUser.UserID,
+                new ClientDetails(),
                 out var errorMessageInfo);
 
 
