@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
-using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Views;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
@@ -20,11 +18,11 @@ using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
 
-namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
+namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
-    partial class DemoPlugInViewModel
+    partial class PluginViewModel
     {
-        private ProjectsAndProposalsViewModel ProjectsAndProposalsViewModel => _projectsAndProposalsViewModel ?? (_projectsAndProposalsViewModel = serviceLocator.GetInstance<MainModule.ViewModels.ProjectsAndProposalsViewModel>());
+        private ProjectsAndProposalsViewModel ProjectsAndProposalsViewModel => _projectsAndProposalsViewModel ?? (_projectsAndProposalsViewModel = serviceLocator.GetInstance<ProjectsAndProposalsViewModel>());
 
         private ProjectsAndProposalsViewModel _projectsAndProposalsViewModel;
 
@@ -144,7 +142,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 proposalIdMainPart,
                 proposalIdAppendixPart,
                 User.CurrentUser.LBUser.UserID,
-                new ClientDetails(),
+                new ClientDetails(true),
                 out var errorMessageInfo);
 
 
@@ -262,27 +260,27 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         private void ExecuteExecuteScript()
         {
 
-            var scriptName = "HelloWorld";
+            const string scriptName = "HelloWorld";
             var script = ProjectAndConfigurationModel.LoadScriptByName(scriptName);
             if (script == null)
-                MessageBox.Show(string.Format("Scipt '{0}' not found!", "HelloWorld"), MessageBoxType.Error);
+                MessageBox.Show("Scipt 'HelloWorld' not found!", MessageBoxType.Error);
 
             else
             {
-                var args = new CustomScriptArgs(ProjectAndConfigurationModel.SelectedProposal);
-                args.CurrentConfigurationItemId = (SelectedConfigurationTreeItem != null) ? SelectedConfigurationTreeItem.Value.ComponentID : Guid.Empty;
+                var args = new CustomScriptArgs(ProjectAndConfigurationModel.SelectedProposal)
+                {
+                    CurrentConfigurationItemId = SelectedConfigurationTreeItem?.Value.ComponentID ?? Guid.Empty, CustomArgs = new object[] {"abc", 123}
+                };
 
                 // pass some custom parameters to the script
-                args.CustomArgs = new object[] { "abc", 123 };
-
-
-                MessageBox.Show(string.Format("Going to start Script '{0}'", script.Name));
+                
+                MessageBox.Show($"Going to start Script '{script.Name}'");
 
                 var scriptResult = ProjectAndConfigurationModel.ExecuteCustomScript(script.ScriptsKpId, args);
 
-                var resultMessage = string.Format("Script '{0}' was executed.", script.Name);
+                var resultMessage = $"Script '{script.Name}' was executed.";
                 if (scriptResult != null)
-                    resultMessage = string.Format("{0}\nResult is {1}", resultMessage, scriptResult.ToString());
+                    resultMessage = $"{resultMessage}\nResult is {scriptResult.ToString()}";
                 MessageBox.Show(resultMessage);
 
             }

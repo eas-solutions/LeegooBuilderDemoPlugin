@@ -1,0 +1,218 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <Platforms>x86;x64</Platforms>
+    <UseWpf>true</UseWpf>
+    <RootNamespace>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</RootNamespace>
+    <AssemblyName>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\..\..\LeegooBuilder\Main\Binaries(x64)\Plugins\DemoPlugin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\..\..\LeegooBuilder\Main\Binaries\Plugins\DemoPlugin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='x86'">
+    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries</LeegooBinaries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries(x64)</LeegooBinaries>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <!--Leegoo Abhänigkeiten-->
+    <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.LeegooBuilder.Common.CommonTypes">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.LeegooBuilder.Common.DataTransferObjects">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Common.DataTransferObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.LeegooBuilder.Server.DataAccess.Core">
+      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PrismCompatibility">
+      <HintPath>$(LeegooBinaries)\PrismCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="EasDataTransfer">
+      <HintPath>$(LeegooBinaries)\EasDataTransfer.dll</HintPath>
+    </Reference>
+
+    <!--DevExpress Abghänigkeiten-->
+    <Reference Include="DevExpress.Mvvm.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Mvvm.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.CodeParser.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Data.Desktop.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Data.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.DataAccess.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Images.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Mvvm.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Office.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Pdf.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Printing.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.RichEdit.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v20.2.Export">
+      <HintPath>$(LeegooBinaries)\DevExpress.RichEdit.v20.2.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Accordion.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Accordion.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Controls.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Core.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v20.2.Extensions">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Core.v20.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Docking.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.DocumentViewer.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.ExpressionEditor.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.ExpressionEditor.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v20.2.Extensions">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v20.2.Core">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Layout.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.LayoutControl.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.NavBar.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Printing.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Ribbon.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.RichEdit.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.RichEdit.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Themes.Office2016White.v20.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.2">
+      <HintPath>$(LeegooBinaries)\DevExpress.Xpo.v20.2.dll</HintPath>
+    </Reference>
+
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Images\NavigationBar\plugin_32x32.png" />
+    <None Remove="Images\Ribbon\check_32x32.png" />
+    <None Remove="Images\Ribbon\CreateProposal_32x32.png" />
+    <None Remove="Images\Ribbon\CustomProperty_32x32.png" />
+    <None Remove="Images\Ribbon\fail_32x32.png" />
+    <None Remove="Images\Ribbon\find_32x32.png" />
+    <None Remove="Images\Ribbon\locked_32x32.png" />
+    <None Remove="Images\Ribbon\pass_32x32.png" />
+    <None Remove="Images\Ribbon\process_32x32.png" />
+    <None Remove="Images\Ribbon\ScriptingEditor_32x32.png" />
+    <None Remove="Images\Ribbon\sql_32x32.png" />
+    <None Remove="Images\Ribbon\upgrade_32x32.png" />
+    <None Remove="Images\TreeIcons\SpecializedDescription_16x16.png" />
+    <None Remove="Images\TreeIcons\SpecializedLongText_16x16.png" />
+    <None Remove="Views\DemoPlugInView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\NavigationBar\plugin_32x32.png" />
+    <Resource Include="Images\Ribbon\check_32x32.png" />
+    <Resource Include="Images\Ribbon\CreateProposal_32x32.png" />
+    <Resource Include="Images\Ribbon\CustomProperty_32x32.png" />
+    <Resource Include="Images\Ribbon\fail_32x32.png" />
+    <Resource Include="Images\Ribbon\find_32x32.png" />
+    <Resource Include="Images\Ribbon\locked_32x32.png" />
+    <Resource Include="Images\Ribbon\pass_32x32.png" />
+    <Resource Include="Images\Ribbon\process_32x32.png" />
+    <Resource Include="Images\Ribbon\ScriptingEditor_32x32.png" />
+    <Resource Include="Images\Ribbon\sql_32x32.png" />
+    <Resource Include="Images\Ribbon\upgrade_32x32.png" />
+    <Resource Include="Images\TreeIcons\SpecializedDescription_16x16.png" />
+    <Resource Include="Images\TreeIcons\SpecializedLongText_16x16.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

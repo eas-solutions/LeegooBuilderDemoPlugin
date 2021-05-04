@@ -7,39 +7,31 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
-using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
-using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Views;
+using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
+using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Global;
-using Microsoft.Practices.ServiceLocation;
-using Prism.Events;
-using Prism.Mvvm;
-using Prism.Regions;
-using GlyphHelper = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers.GlyphHelper;
+using PrismCompatibility;
+using PrismCompatibility.ServiceLocator;
 using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.MessageBox;
 
-namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
+namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
-    public class ExecuteConfigurationTreeSmartUpdateEvent : PubSubEvent<object>
-    {
-    }
-
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public partial class DemoPlugInViewModel : UserSettingsAwareClientViewModelBase
+    public partial class PluginViewModel : UserSettingsAwareClientViewModelBase
     {
         private DXToggleButtonCommand _lockProposalToggleButtonCommand;
-
-
+        
         #region RibbonHelpers
 
         private new CommandModel AddCommand(PageGroupModel pageGroup, string caption, Action action, string smallGlyph = null,
@@ -68,54 +60,50 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         #endregion RibbonHelpers
 
-        #region TreeListControl-Stuff
+        #region Properties
 
+        #region Caption
 
-        /// <summary>
-        /// Ausgewähltes Configuration-TreeItem
-        /// </summary>
-        /// <remarks>
-        /// <para>BR 04.10.2014: Prism 5-Umstellung: RaisePropertyChanged() -> OnPropertyChanged(value)</para>
-        /// </remarks>
+        /// <summary>   Caption der Region (oben) </summary>
+        public override string Caption => "DemoPlugIn blablabla";
+
+        #endregion
+
+        #region SelectedConfigurationTreeItem
+
+        private TreeStructureItem<ConfigurationItem> _selectedConfigurationTreeItem;
+
+        /// <summary>   Ausgewähltes Configuration-TreeItem. </summary>
         public TreeStructureItem<ConfigurationItem> SelectedConfigurationTreeItem
         {
             get => _selectedConfigurationTreeItem;
             set
             {
-                if (_selectedConfigurationTreeItem == value) return;
+                SetProperty(ref _selectedConfigurationTreeItem, value);
+                if (_selectedConfigurationTreeItem == null) return;
 
-                _selectedConfigurationTreeItem = value;
-                OnPropertyChanged(() => SelectedConfigurationTreeItem);
-
-
-                if (_selectedConfigurationTreeItem == null)
-                    return;
-
-                if ((_selectedConfigurationTreeItem.Value.LocalAttributes == null) ||
-                    (_selectedConfigurationTreeItem.Value.HasConfigurator && (_selectedConfigurationTreeItem.Value.GlobalAttributes == null)))
+                if (_selectedConfigurationTreeItem.Value.LocalAttributes == null ||
+                    _selectedConfigurationTreeItem.Value.HasConfigurator && _selectedConfigurationTreeItem.Value.GlobalAttributes == null)
                 {
                     ProjectAndConfigurationModel.LoadAttributes(_selectedConfigurationTreeItem);
                 }
             }
         }
 
-        private TreeStructureItem<ConfigurationItem> _selectedConfigurationTreeItem;
+        #endregion
 
+        #region VisibilityOfEditStateIndicationColumnInConfigurationTree
+
+        private bool _visibilityOfEditStateIndicationColumnInConfigurationTree;
 
         /// <summary>
         /// Steuert die Sichtbarkeit der Spalte 'EditStateIndication' in der Konfiguration (links)
         /// </summary>
-        /// <remarks>
-        /// <para>BR 04.10.2014: Prism 5-Umstellung: RaisePropertyChanged() -> SetProperty(ref, value)</para>
-        /// </remarks>
         public bool VisibilityOfEditStateIndicationColumnInConfigurationTree
         {
             get => _visibilityOfEditStateIndicationColumnInConfigurationTree;
             set => SetProperty(ref _visibilityOfEditStateIndicationColumnInConfigurationTree, value);
         }
-
-        private bool _visibilityOfEditStateIndicationColumnInConfigurationTree;
-
 
         private void SetVisibilityOfEditStateIndicationColumnInConfigurationTree()
         {
@@ -123,6 +111,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
                 VisibilityOfEditStateIndicationColumnInConfigurationTree = ProjectAndConfigurationModel.SelectedProposal.Configuration.EditStateCount > 0;
         }
 
+        #endregion
+
+        #region VisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree
 
         /// <summary>
         /// Steuert die Sichtbarkeit der Spalte 'HasAnySpecializedDescription' in der Konfiguration (links)
@@ -141,6 +132,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             VisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree = ProjectAndConfigurationModel.SelectedProposal.Configuration != null && ProjectAndConfigurationModel.SelectedProposal.Configuration.FindInBreadth(x => x.HasAnySpecializedDescription) != null;
         }
 
+        #endregion
+        
+        #region VisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree
 
         /// <summary>
         /// Steuert die Sichtbarkeit der Spalte 'HasAnySpecializedLongText' in der Konfiguration (links)
@@ -159,6 +153,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             VisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree = ProjectAndConfigurationModel.SelectedProposal != null && ProjectAndConfigurationModel.SelectedProposal.Configuration != null && ProjectAndConfigurationModel.SelectedProposal.Configuration.FindInBreadth(x => x.HasAnySpecializedLongText) != null;
         }
 
+        #endregion
+        
+        #region VisibilityOfAnchorColumnInConfigurationTree
+
+        private bool _visibilityOfAnchorColumnInConfigurationTree;
 
         /// <summary>
         /// Steuert die Sichtbarkeit der Spalte 'Anchor' in der Konfiguration (links)
@@ -169,14 +168,42 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             set => SetProperty(ref _visibilityOfAnchorColumnInConfigurationTree, value);
         }
 
-        private bool _visibilityOfAnchorColumnInConfigurationTree;
+        #endregion
 
+        #region ListOfProjects
 
-        #endregion TreeListControl-Stuff
+        /// <summary>
+        /// Liste der Projekte
+        /// Diese wird beispielhaft im View in einer ListBox angezeigt
+        /// </summary>
+        public List<string> ListOfProjects
+        {
+            get
+            {
+                if (_listOfProjects == null)
+                {
+                    _listOfProjects = new List<string>();
 
+                    var projects = ProjectAndConfigurationModel.GetProjectInfos();
+                    foreach (var project in projects)
+                    {
+                        _listOfProjects.Add(project.Description);
+                    }
+                }
+                return _listOfProjects;
+            }
+        }
+
+        private List<string> _listOfProjects;
+
+        #endregion
+
+        #endregion
+
+        #region Constructors
 
         [ImportingConstructor]
-        public DemoPlugInViewModel(IEventAggregator eventAggregator,
+        public PluginViewModel(IEventAggregator eventAggregator,
                                   ProjectAndConfigurationClientBase projectAndConfigurationModel,
                                   ITranslator translator,
                                   IUserSettingsService userSettingsService)
@@ -186,20 +213,16 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
             // Initialisierung des ViewModels
             serviceLocator = ServiceLocator.Current;
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                // Einige Commands des ProjectsAndProposalsViewModels überschreiben.
-                var test = ProjectsAndProposalsViewModel.RibbonViewModel.Categories;
-
-            });
-
+            
             TraceLogHelper.Log("DemoPlugInViewModel: Initialization (end)");
 
         }
 
+        #endregion
 
+        #region Overrides
 
+        #region OnNavigatedTo
 
         /// <summary>
         /// Der User hat gerade unser PlugIn links in der NavigationBar aufgerufen
@@ -212,26 +235,26 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             if (ProjectAndConfigurationModel.SelectedProposal.Configuration == null)
             {
                 Task.Factory.ExecuteAndWaitNonBlocking(() =>
-                                                       {
-                                                           // 2019-01-11, vi: ProgressBar einschalten, wenn es sich lohnt. Siehe Schwellwert in den SE.
-                                                           var threshold = Convert.ToInt16("0" + ProjectAndConfigurationModel?.GetSysSettingsParameterValue(SysSettingsParameter.ShowBusyIndicatorWhenLoadingConfigurationThreshold));
-                                                           if (ProjectAndConfigurationModel?.SelectedProposal?.ComponentCount >= threshold)
-                                                               StartProgressBar("LoadingConfiguration");
+                {
+                    // 2019-01-11, vi: ProgressBar einschalten, wenn es sich lohnt. Siehe Schwellwert in den SE.
+                    var threshold = Convert.ToInt16("0" + ProjectAndConfigurationModel?.GetSysSettingsParameterValue(SysSettingsParameter.ShowBusyIndicatorWhenLoadingConfigurationThreshold));
+                    if (ProjectAndConfigurationModel?.SelectedProposal?.ComponentCount >= threshold)
+                        StartProgressBar("LoadingConfiguration");
 
-                                                           ProjectAndConfigurationModel.LoadConfiguration(ProjectAndConfigurationModel.SelectedProposal);
-                                                           ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView.ViewName,
-                                                               Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
+                    ProjectAndConfigurationModel.LoadConfiguration(ProjectAndConfigurationModel.SelectedProposal);
+                    ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView.ViewName,
+                        Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
 
-                                                           ProjectAndConfigurationModel.SelectedProposal.PropertyChanged += SelectedProposalOnPropertyChanged;
-                                                           ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.OnTreeItemChanged += RootOnOnTreeItemChanged;
-                                                           ProjectAndConfigurationModel.SelectedProposal.OnConfigured += OnConfigured;
-                                                           ProjectAndConfigurationModel.SelectedProposal.OnCalculated += OnCalculated;
+                    ProjectAndConfigurationModel.SelectedProposal.PropertyChanged += SelectedProposalOnPropertyChanged;
+                    ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.OnTreeItemChanged += RootOnOnTreeItemChanged;
+                    ProjectAndConfigurationModel.SelectedProposal.OnConfigured += OnConfigured;
+                    ProjectAndConfigurationModel.SelectedProposal.OnCalculated += OnCalculated;
 
-                                                           // Hinweis:
-                                                           // Neue Events müssen in ViewClosed() wieder entfernt werden.
+                    // Hinweis:
+                    // Neue Events müssen in ViewClosed() wieder entfernt werden.
 
-                                                           EndProgressBar();
-                                                       });
+                    EndProgressBar();
+                });
             }
 
             SetVisibilityOfEditStateIndicationColumnInConfigurationTree();
@@ -246,16 +269,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             base.OnNavigatedTo(navigationContext);
         }
 
-        private void OnConfigured(TreeStructureItem<ConfigurationItem> configurationItem)
-        {
-            MessageBox.Show("Configuration has been configured.");
-        }
-
-        private void OnCalculated()
-        {
-            MessageBox.Show("Configuration has been calculated.");
-        }
-
+        #endregion
+        
+        #region OnNavigatedFrom
 
         /// <summary>
         /// Der User hat gerade unser PlugIn verlassen und ein anderes Module geöffnet
@@ -266,6 +282,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             base.OnNavigatedFrom(navigationContext);
         }
 
+        #endregion
+        
+        #region ViewClosed
 
         public override void ViewClosed()
         {
@@ -277,30 +296,20 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             base.ViewClosed();
         }
 
+        #endregion
+        
+        #region SetUpUI
 
-        private void RootOnOnTreeItemChanged(object sender, TreeStructureEventArgs<ConfigurationItem> treeStructureEventArgs)
-        {
-            //MessageBox.Show("ConfigurationHasBeenChanged");
-            //this.OnPropertyChanged(() => this.SelectedConfigurationTreeItem);
-            eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Publish(null);
-        }
-
-        private void SelectedProposalOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            //MessageBox.Show("SelectedProposalOnPropertyChanged");
-        }
-
-
-        // Caption der Region (oben)
-        public override string Caption => "DemoPlugIn blablabla";
-
-
-        // Text auf dem Tabpage (unten)
+        /// <summary>   Text auf dem Tabpage (unten) </summary>
+        /// <remarks>   M Fries, 04.05.2021. </remarks>
         protected override void SetUpUI()
         {
             title = "TestTitel";
         }
 
+        #endregion
+
+        #region SetUpRibbonViewModel
 
         protected override void SetUpRibbonViewModel()
         {
@@ -333,7 +342,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
             AddCommand(proposalGroup, "Create Proposal", ExecuteCreateProposal, largeGlyph: "CreateProposal_32x32.png", hint: "Creates a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
             AddCommand(proposalGroup, "Set Custom Property", ExecuteSetProposalCustomProperty, largeGlyph: "CustomProperty_32x32.png", hint: "Sets a custom definition value", canExecuteDelegate: CanExecuteSetProposalCustomProperty);
 
-         
+
 
             _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
             {
@@ -354,31 +363,31 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
 
         }
 
+        #endregion
 
-        /// <summary>
-        /// Liste der Projekte
-        /// Diese wird beispielhaft im View in einer ListBox angezeigt
-        /// </summary>
-        public List<string> ListOfProjects
+        #endregion
+
+        private void OnConfigured(TreeStructureItem<ConfigurationItem> configurationItem)
         {
-            get
-            {
-                if (_listOfProjects == null)
-                {
-                    _listOfProjects = new List<string>();
-
-                    var projects = ProjectAndConfigurationModel.GetProjectInfos();
-                    foreach (var project in projects)
-                    {
-                        _listOfProjects.Add(project.Description);
-                    }
-                }
-                return _listOfProjects;
-            }
+            MessageBox.Show("Configuration has been configured.");
         }
 
-        private List<string> _listOfProjects;
+        private void OnCalculated()
+        {
+            MessageBox.Show("Configuration has been calculated.");
+        }
 
+        private void RootOnOnTreeItemChanged(object sender, TreeStructureEventArgs<ConfigurationItem> treeStructureEventArgs)
+        {
+            //MessageBox.Show("ConfigurationHasBeenChanged");
+            //this.OnPropertyChanged(() => this.SelectedConfigurationTreeItem);
+            eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Publish(null);
+        }
+
+        private void SelectedProposalOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            //MessageBox.Show("SelectedProposalOnPropertyChanged");
+        }
 
         #region IDisposable
 
@@ -401,6 +410,5 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels
         }
 
         #endregion IDisposable
-
     }
 }

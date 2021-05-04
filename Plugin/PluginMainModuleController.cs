@@ -1,59 +1,61 @@
 ﻿using System;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.MVVM;
-using EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Helpers;
+using EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels;
 using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
-using Microsoft.Practices.ServiceLocation;
-using Prism.Regions;
-using DemoPlugInViewModel = EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels.DemoPlugInViewModel;
+using Plugin.Images.Helpers;
+using PrismCompatibility;
+using PrismCompatibility.ServiceLocator;
 
-namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
+namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
 {
-
-    public class DemoPlugInMainModuleController : ModuleControllerBase
+    public class PluginMainModuleController : ModuleControllerBase
     {
-        private const string DemoPlugInRegionName = "DemoPlugInRegion";
+        #region Region
 
-        private IRegion DemoPlugInRegion { get; set; }
+        private const string RegionName = "DemoPluginRegion";
+        private IRegion PluginRegion { get; set; }
+        protected override IRegion GetRegion(Type viewModelType) => viewModelType == typeof(PluginViewModel) ? PluginRegion : null;
 
-        /// <summary>
-        /// Konstruktor
-        /// </summary>
-        public DemoPlugInMainModuleController()
+        #endregion
+
+        #region Constructors
+
+        /// <summary>   Default constructor. </summary>
+        /// <remarks>   M Fries, 04.05.2021. </remarks>
+        public PluginMainModuleController()
         {
-            this.RegisterNavBarItem();
-            this.InitRegion();
+            PluginRegion = shellService.GetRegion(RegionName);
+            RegisterNavBarItem();
         }
 
+        #endregion
 
-        /// <summary>
-        /// Registriert das zugehörige NavBarItem im Bereich "Proposals"
-        /// </summary>
+        #region RegisterNavBarItem
+
+        /// <summary>   Registriert das Plugin als Button in der Navigationsleiste. </summary>
+        /// <remarks>   M Fries, 04.05.2021. </remarks>
         private void RegisterNavBarItem()
         {
             // Position des NavigationBarItems innerhalb des Bereichs. 0 steht für ganz oben.
+            // Diese Einstellung kann in Systemeinstellungen überschrieben werden
             const int position = 2;
 
             // Hier muss eine der drei möglichen Gruppen in der Navbar ausgewählt werden.
-            var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("Proposals"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
-            //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("ProductAdministration"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
-            //var demoPlugInNavigationBarItem = RegisterViewModel<DemoPlugInViewModel>(translator.Translate("SystemAdministration"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
-
-
-            demoPlugInNavigationBarItem.IsEnabled = false;
+            var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate("Proposals"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
+            
+            navBarItem.IsEnabled = false;
 
             // Beispiel: Das NavigationBarItem soll nur anwählbar sein, wenn ein Beleg angewählt ist
             var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClientBase>();
-            projectAndConfigurationModel.SelectedProposalChanged +=
-            (sender, e) =>
+            projectAndConfigurationModel.SelectedProposalChanged += (sender, e) =>
             {
-                bool bSelProposal = projectAndConfigurationModel.SelectedProposal != null;
-                demoPlugInNavigationBarItem.IsEnabled = bSelProposal;
+                var isSelected = projectAndConfigurationModel.SelectedProposal != null;
+                navBarItem.IsEnabled = isSelected;
             };
-
 
             projectAndConfigurationModel.DynamicDataSaving += DynamicDataSaving;
             projectAndConfigurationModel.DynamicDataSaved += DynamicDataSaved;
@@ -64,6 +66,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
             projectAndConfigurationModel.ConfigurationItemAdded += ProjectAndConfigurationModelOnConfigurationItemAdded;
             projectAndConfigurationModel.ConfigurationItemReplacing += ProjectAndConfigurationModelOnConfigurationItemReplacing;
         }
+
+        #endregion
+
+        #region Event Handlers
 
         private void ProjectAndConfigurationModelOnConfigurationItemAdded(TreeStructureItem<ConfigurationItem> configurationItem)
         {
@@ -128,30 +134,6 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule
 
         }
 
-
-
-
-        /// <summary>
-        /// Initialisiert die Region für das PlugIn
-        /// </summary>
-        private void InitRegion()
-        {
-            DemoPlugInRegion = shellService.GetRegion(DemoPlugInRegionName);
-        }
-
-        /// <summary>
-        /// Liefert die zu diesem PlugIn gehörende Region zurück
-        /// </summary>
-        /// <param name="viewModelType"></param>
-        /// <returns></returns>
-        protected override IRegion GetRegion(Type viewModelType)
-        {
-            if (viewModelType == typeof(DemoPlugInViewModel))
-            {
-                return DemoPlugInRegion;
-            }
-
-            return null;
-        }
+        #endregion
     }
 }

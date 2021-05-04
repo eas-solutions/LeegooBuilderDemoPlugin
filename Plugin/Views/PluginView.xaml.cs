@@ -1,18 +1,22 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Controls;
-using EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.ViewModels;
-using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
-using Microsoft.Practices.ServiceLocation;
-using Prism.Events;
+using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
+using PrismCompatibility;
+using PrismCompatibility.ServiceLocator;
 
-namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Views
+namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
 {
     /// <summary>
-    /// Interaktionslogik für DemoPlugInView.xaml
+    /// Interaktionslogik für PluginView.xaml
     /// </summary>
-    public partial class DemoPlugInView : UserControl
+    [Export]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    public partial class PluginView : UserControl
     {
-        public DemoPlugInView()
+        private IDisposable _configurationTreeSmartUpdateEvent;
+        public PluginView()
         {
             InitializeComponent();
 
@@ -21,7 +25,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Views
             ConfigurationEditorView_Loaded(this, null);
         }
 
-        ~DemoPlugInView()
+        ~PluginView()
         {
             ConfigurationEditorView_Unloaded(this, null);
         }
@@ -30,14 +34,13 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule.Views
         void ConfigurationEditorView_Unloaded(object sender, RoutedEventArgs e)
         {
             var eventAggregator = ServiceLocator.Current.GetInstance<IEventAggregator>();
-            eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Unsubscribe(ExecuteConfigurationTreeSmartUpdate);
-
+            _configurationTreeSmartUpdateEvent.Dispose();
         }
 
         void ConfigurationEditorView_Loaded(object sender, RoutedEventArgs e)
         {
             var eventAggregator = ServiceLocator.Current.GetInstance<IEventAggregator>();
-            eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Subscribe(ExecuteConfigurationTreeSmartUpdate);
+            _configurationTreeSmartUpdateEvent = eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Subscribe(ExecuteConfigurationTreeSmartUpdate);
         }
 
         private void ExecuteConfigurationTreeSmartUpdate(object p)
