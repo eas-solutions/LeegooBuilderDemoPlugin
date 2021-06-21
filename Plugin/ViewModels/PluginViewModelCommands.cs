@@ -7,6 +7,7 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
+using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
@@ -29,7 +30,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private void ExecuteDoSomething()
         {
-
+          
             ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
             // Neue Komponente einfügen
@@ -154,8 +155,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             //ProjectAndConfigurationModel.SaveProposal2(newProposal);
 
             // Belegliste aktualisieren
-            ProjectsAndProposalsViewModel.UpdateProposalList(ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.Insert);
-
+            ProjectAndConfigurationModel.MakeProposalVisible(newProposal);
         }
 
 

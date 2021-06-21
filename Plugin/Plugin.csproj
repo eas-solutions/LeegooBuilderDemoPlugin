@@ -39,6 +39,84 @@
 
   <ItemGroup>
     <!--Leegoo Abhänigkeiten-->
+    <Reference Include="DevExpress.Charts.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Charts.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.CodeParser.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Data.Desktop.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Data.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.DataAccess.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Mvvm.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Office.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Pdf.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Printing.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.RichEdit.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v21.1.Export">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.RichEdit.v21.1.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Controls.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Core.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Docking.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.DocumentViewer.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.ExpressionEditor.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.ExpressionEditor.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Grid.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Grid.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v21.1.Core">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Layout.v21.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.LayoutControl.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.NavBar.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Printing.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Ribbon.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.RichEdit.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.RichEdit.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Themes.Office2016White.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v21.1">
+      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpo.v21.1.dll</HintPath>
+    </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
       <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
     </Reference>
@@ -65,96 +143,6 @@
     </Reference>
 
     <!--DevExpress Abghänigkeiten-->
-    <Reference Include="DevExpress.Mvvm.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Mvvm.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.CodeParser.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.CodeParser.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Data.Desktop.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Data.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.DataAccess.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.DataAccess.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Images.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Images.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Mvvm.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Mvvm.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Office.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Office.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Pdf.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Pdf.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Printing.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.RichEdit.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.2.Export">
-      <HintPath>$(LeegooBinaries)\DevExpress.RichEdit.v20.2.Export.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Accordion.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Accordion.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Controls.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Controls.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Core.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v20.2.Extensions">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Core.v20.2.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Docking.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Docking.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.DocumentViewer.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.DocumentViewer.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.ExpressionEditor.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.ExpressionEditor.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v20.2.Extensions">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Grid.v20.2.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v20.2.Core">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Layout.v20.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.LayoutControl.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.NavBar.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.NavBar.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Printing.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Ribbon.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Ribbon.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.RichEdit.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.RichEdit.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpf.Themes.Office2016White.v20.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v20.2">
-      <HintPath>$(LeegooBinaries)\DevExpress.Xpo.v20.2.dll</HintPath>
-    </Reference>
 
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="PresentationCore" />
@@ -178,6 +166,12 @@
     <None Remove="Images\TreeIcons\SpecializedDescription_16x16.png" />
     <None Remove="Images\TreeIcons\SpecializedLongText_16x16.png" />
     <None Remove="Views\DemoPlugInView.xaml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.CodeParser" Version="21.1.3" />
+    <PackageReference Include="DevExpressMvvm" Version="20.2.3" />
   </ItemGroup>
 
   <ItemGroup>
