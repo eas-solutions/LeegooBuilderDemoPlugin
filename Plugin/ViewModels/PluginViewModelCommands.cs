@@ -7,7 +7,7 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
-using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
+using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;

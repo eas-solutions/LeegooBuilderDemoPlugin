@@ -8,138 +8,126 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
-    <Platforms>x86;x64</Platforms>
+    <TargetFramework>net48</TargetFramework>
+    <Platforms>x86;x64;AnyCPU</Platforms>
     <UseWpf>true</UseWpf>
     <RootNamespace>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</RootNamespace>
     <AssemblyName>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <OutputPath>..\..\..\..\LeegooBuilder\Main\Binaries(x64)\Plugins\DemoPlugin\</OutputPath>
+    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries\$(Configuration)-$(Platform)\</LeegooBinaries>
+    <OutputPath>$(LeegooBinaries)Plugins\DemoPlugin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <OutputPath>..\..\..\..\LeegooBuilder\Main\Binaries\Plugins\DemoPlugin\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Platform)'=='x86'">
-    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries</LeegooBinaries>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)'=='x64'">
-    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries(x64)</LeegooBinaries>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
 
   <ItemGroup>
     <!--Leegoo Abhänigkeiten-->
     <Reference Include="DevExpress.Charts.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Charts.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Charts.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.CodeParser.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.CodeParser.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.CodeParser.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.Desktop.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Data.Desktop.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Data.Desktop.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Data.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Data.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.DataAccess.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.DataAccess.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.DataAccess.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Mvvm.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Mvvm.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Mvvm.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Office.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Office.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Pdf.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Pdf.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Printing.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Printing.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.RichEdit.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v21.1.Export">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.RichEdit.v21.1.Export.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v21.1.Export.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Controls.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Controls.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Controls.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Core.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Core.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Docking.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Docking.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Docking.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.DocumentViewer.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.DocumentViewer.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.DocumentViewer.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.ExpressionEditor.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.ExpressionEditor.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.ExpressionEditor.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Grid.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Grid.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Layout.v21.1.Core">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Layout.v21.1.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Layout.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.LayoutControl.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.LayoutControl.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.LayoutControl.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.NavBar.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.NavBar.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.NavBar.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Printing.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Printing.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Printing.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Ribbon.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Ribbon.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Ribbon.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.RichEdit.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.RichEdit.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.RichEdit.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Themes.Office2016White.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpf.Themes.Office2016White.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Themes.Office2016White.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpo.v21.1">
-      <HintPath>..\..\..\..\LeegooBuilder\Main\Binaries\DevExpress.Xpo.v21.1.dll</HintPath>
+      <HintPath>$(LeegooBinaries)DevExpress.Xpo.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.dll</HintPath>
+    <Reference Include="EAS.LeegooBuilder.ServiceClient">
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.ServiceClient.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Common.CommonTypes">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Common.CommonTypes.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Common.DataTransferObjects">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Common.DataTransferObjects.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Common.DataTransferObjects.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Server.DataAccess.Core">
-      <HintPath>$(LeegooBinaries)\EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Server.DataAccess.Core.dll</HintPath>
     </Reference>
     <Reference Include="PrismCompatibility">
-      <HintPath>$(LeegooBinaries)\PrismCompatibility.dll</HintPath>
+      <HintPath>$(LeegooBinaries)PrismCompatibility.dll</HintPath>
     </Reference>
     <Reference Include="EasDataTransfer">
-      <HintPath>$(LeegooBinaries)\EasDataTransfer.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EasDataTransfer.dll</HintPath>
     </Reference>
 
     <!--DevExpress Abghänigkeiten-->
@@ -170,8 +158,8 @@
 
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.CodeParser" Version="21.1.3" />
-    <PackageReference Include="DevExpressMvvm" Version="20.2.3" />
+    <PackageReference Include="DevExpress.CodeParser" Version="21.1.5" />
+    <PackageReference Include="DevExpressMvvm" Version="21.1.5" />
   </ItemGroup>
 
   <ItemGroup>

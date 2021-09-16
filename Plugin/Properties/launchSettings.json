@@ -2,8 +2,8 @@
   "profiles": {
     "Plugin": {
       "commandName": "Executable",
-      "executablePath": "C:\\Quelltexte\\LeegooBuilder\\Main\\Binaries\\EAS.LeegooBuilder.Client.GUI.Shell.exe",
-      "workingDirectory": "C:\\Quelltexte\\LeegooBuilder\\Main\\Binaries\\"
+      "executablePath": "C:\\Quelltexte\\Marmeke\\LeegooBuilder\\Main\\Binaries\\Debug-AnyCPU\\EAS.LeegooBuilder.Client.GUI.Shell.exe",
+      "workingDirectory": "C:\\Quelltexte\\Marmeke\\LeegooBuilder\\Main\\Binaries\\Debug-AnyCPU"
     }
   }
 }

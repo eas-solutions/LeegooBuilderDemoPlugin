@@ -1,7 +1,7 @@
 ﻿using System;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.MVVM;
 using EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels;
-using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
+using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
@@ -42,7 +42,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         {
             // Position des NavigationBarItems innerhalb des Bereichs. 0 steht für ganz oben.
             // Diese Einstellung kann in Systemeinstellungen überschrieben werden
-            const int position = 2;
+            const int position = 0;
 
             // Hier muss eine der drei möglichen Gruppen in der Navbar ausgewählt werden.
             var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate("Proposals"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
@@ -50,7 +50,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             navBarItem.IsEnabled = false;
 
             // Beispiel: Das NavigationBarItem soll nur anwählbar sein, wenn ein Beleg angewählt ist
-            var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClientBase>();
+            var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClient>();
             projectAndConfigurationModel.SelectedProposalChanged += (sender, e) =>
             {
                 var isSelected = projectAndConfigurationModel.SelectedProposal != null;

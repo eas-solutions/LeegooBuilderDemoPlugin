@@ -10,8 +10,8 @@ using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
-using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase;
-using EAS.LeegooBuilder.Client.ServerProxy.BusinessServiceClientBase.MVVM;
+using EAS.LeegooBuilder.ServiceClient;
+using EAS.LeegooBuilder.ServiceClient.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
@@ -204,7 +204,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         [ImportingConstructor]
         public PluginViewModel(IEventAggregator eventAggregator,
-                                  ProjectAndConfigurationClientBase projectAndConfigurationModel,
+                                  ProjectAndConfigurationClient projectAndConfigurationModel,
                                   ITranslator translator,
                                   IUserSettingsService userSettingsService)
             : base(eventAggregator, projectAndConfigurationModel, translator, userSettingsService)
