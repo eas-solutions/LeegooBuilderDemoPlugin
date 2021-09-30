@@ -34,13 +34,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABD9FD5D-1FAA-4A9D-99B9-7E4C2DB9B047}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://easma.ddns.net:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Plugin\\Plugin.csproj
-		SccProjectName1 = Plugin
-		SccLocalPath1 = Plugin
-	EndGlobalSection
 EndGlobal
