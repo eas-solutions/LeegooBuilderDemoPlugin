@@ -16,8 +16,10 @@ using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
 using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
+using static System.FormattableString;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
@@ -233,6 +235,49 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
 
+        private void ExecuteReadPricingField()
+        {
+            var pricingfieldValue = SelectedConfigurationTreeItem?.Value?.F01?.Expression;
+            MessageBox.Show(pricingfieldValue);
+        }
+
+        
+        private bool CanExecuteReadPricingField(out string errorMessage)
+        {
+            if (SelectedConfigurationTreeItem == null)
+            {
+                errorMessage = "No configurationitem selected!";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        
+        private void ExecuteWritePricingField()
+        {
+            var pricingField = SelectedConfigurationTreeItem?.Value?.F01;
+            var roundExpression = pricingField.HasRoundExpression ? $" rnd {pricingField.Round}" : string.Empty;
+            var newValue = pricingField.Value + 1;
+            var newPricingField = new PricingField(Invariant($"{pricingField.Statement} {newValue}{roundExpression}"));
+            SelectedConfigurationTreeItem.Value.F01 = newPricingField;
+        }
+
+        
+        private bool CanExecuteWritePricingField(out string errorMessage)
+        {
+            if (SelectedConfigurationTreeItem == null)
+            {
+                errorMessage = "No configurationitem selected!";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        
         private void ExecuteShowBusiIndicator()
         {
             Task.Factory.ExecuteAndWaitNonBlocking(() =>

@@ -156,12 +156,6 @@
     <None Remove="Views\DemoPlugInView.xaml" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="DevExpress.CodeParser" Version="21.1.5" />
-    <PackageReference Include="DevExpressMvvm" Version="21.1.5" />
-  </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Images\NavigationBar\plugin_32x32.png" />
     <Resource Include="Images\Ribbon\check_32x32.png" />

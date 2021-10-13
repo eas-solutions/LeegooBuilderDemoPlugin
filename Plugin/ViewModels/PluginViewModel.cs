@@ -357,10 +357,15 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
 
             var sqlGroup = new PageGroupModel { Name = "Database Group" };
+            AddCommand(sqlGroup, "Select Something", ExecuteSelectSomething, largeGlyph: "sql_32x32.png", hint: "Demonstrates a database select", canExecuteDelegate: CanExecuteSelectSomething);
             page.Groups.Add(sqlGroup);
 
-            AddCommand(sqlGroup, "Select Something", ExecuteSelectSomething, largeGlyph: "sql_32x32.png", hint: "Demonstrates a database select", canExecuteDelegate: CanExecuteSelectSomething);
-
+            
+            var pricingGroup = new PageGroupModel { Name = "Pricing" };
+            AddCommand(pricingGroup, "Read", ExecuteReadPricingField, smallGlyph: "Dollar_16x16.png", hint: "Demonstrates reading a pricing field", canExecuteDelegate: CanExecuteReadPricingField);
+            AddCommand(pricingGroup, "Write", ExecuteWritePricingField, smallGlyph: "Dollar_16x16.png", hint: "Demonstrates writing a pricing field", canExecuteDelegate: CanExecuteWritePricingField);
+            page.Groups.Add(pricingGroup);
+            
         }
 
         #endregion
