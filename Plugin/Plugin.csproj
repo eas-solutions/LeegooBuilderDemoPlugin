@@ -14,7 +14,7 @@
     <RootNamespace>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</RootNamespace>
     <AssemblyName>EAS.LeegooBuilder.Client.GUI.Modules.Plugin</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <LeegooBinaries>..\..\..\..\LeegooBuilder\Main\Binaries\$(Configuration)-$(Platform)\</LeegooBinaries>
+    <LeegooBinaries>..\..\LeegooBuilder\Binaries\$(Configuration)-$(Platform)\</LeegooBinaries>
     <OutputPath>$(LeegooBinaries)Plugins\DemoPlugin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
