@@ -518,7 +518,17 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         
 
         #region ExecuteDeleteConfigurationItem-Command
-        private void ExecuteDeleteConfigurationItem() { }
+
+        private void ExecuteDeleteConfigurationItem()
+        {
+            if (MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                BeginUpdate();
+                ProjectAndConfigurationModel.DeleteConfigurationItem(SelectedConfigurationTreeItem.Value.ComponentID);
+                EndUpdate();
+            }
+        }
+        
         private bool CanExecuteDeleteConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
         #endregion ExecuteDeleteConfigurationItem-Command
