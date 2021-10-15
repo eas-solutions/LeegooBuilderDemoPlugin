@@ -471,6 +471,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #endregion Helpers 
 
         
+        
+        
         #region ConfigurationItem-Commands
         
         
@@ -511,7 +513,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         
         #region ExecuteUpdateConfigurationItem-Command
-        private void ExecuteUpdateConfigurationItem() { }
+
+        private void ExecuteUpdateConfigurationItem()
+        {
+            SelectedConfigurationTreeItem.Value.Quantity++; 
+        }
         private bool CanExecuteUpdateConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
         #endregion ExecuteUpdateConfigurationItem-Command
