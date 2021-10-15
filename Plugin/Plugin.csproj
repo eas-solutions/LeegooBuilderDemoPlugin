@@ -171,6 +171,8 @@
     <Resource Include="Images\Ribbon\upgrade_32x32.png" />
     <Resource Include="Images\TreeIcons\SpecializedDescription_16x16.png" />
     <Resource Include="Images\TreeIcons\SpecializedLongText_16x16.png" />
+    <None Remove="Images\Ribbon\Dollar_16x16.png" />
+    <Resource Include="Images\Ribbon\Dollar_16x16.png" />
   </ItemGroup>
 
   <ItemGroup>
