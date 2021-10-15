@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Threading;
@@ -22,6 +24,8 @@ using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
+using EAS.LeegooBuilder.Common.CommonTypes.DocumentGeneratorClasses;
+using Microsoft.Win32;
 using static System.FormattableString;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
@@ -597,6 +601,52 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         
         #endregion ConfigurationItem-Commands
+        
+        
+        #region Documents-Commands
+
+        #region ExecuteGetDocumentAsPdf-Command
+
+        private void ExecuteGetDocumentAsPdf()
+        {
+            // getl all proposal documents
+            var proposalId = ProjectAndConfigurationModel.SelectedProposal?.InternalProposalID;
+            var language = User.CurrentUser.LBUser.Language;
+            var proposalDocuments = ProjectAndConfigurationModel.GetProposalDocumentsInfo(proposalId.Value, language, false);
+            
+            // test case: use the first document to be exported
+            var proposalDocument = proposalDocuments.First();
+            var document = ProjectAndConfigurationModel.GetProposalDocument(proposalDocument.ProposalTextID);
+
+            // create dialog
+            var dialog = new SaveFileDialog();
+            dialog.Title = "Save document as PDF";
+            dialog.DefaultExt = ".pdf";
+            dialog.FileName = Path.GetInvalidFileNameChars().Aggregate($"{proposalDocument.Description}.pdf", (current, c) => current.Replace(c.ToString(), string.Empty));
+
+            // open dialog
+            var dialogResult = dialog.ShowDialog();
+            if (dialogResult == true)
+            {
+                // save PDF to file
+                File.WriteAllBytes(dialog.FileName, document.Filedata);
+
+                // shell execute saved file
+                var ps = new ProcessStartInfo(dialog.FileName) { UseShellExecute = true, Verb = "open" };
+                Task.Factory.ExecuteAndWaitNonBlocking(() => Process.Start(ps));
+            }
+        }
+
+        private bool CanExecuteGetDocumentAsPdf(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        #endregion ExecuteGetDocumentAsPdf-Command
+        
+            
+        #endregion Documents-Commands
         
     }
 }

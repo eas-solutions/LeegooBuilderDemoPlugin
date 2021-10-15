@@ -327,11 +327,13 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
             var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
             category.Pages.Add(dynamicDataPage);
-            
+
+            // IO Page
             var ioGroup = new PageGroupModel { Name = "I/O" };
             AddCommand(ioGroup, "Save", ExecuteSaveConfigurationItem, largeGlyph: "SaveAll_32x32.png", hint: "Save all data", canExecuteDelegate: CanExecuteSaveConfigurationItem);
             dynamicDataPage.Groups.Add(ioGroup);
             
+            // ConfigurationItem Page
             var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
             AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", hint: "Insert a new element", canExecuteDelegate: CanExecuteInsertElement);
             AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", hint: "Increase the quantity by 1", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
@@ -352,6 +354,16 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             // Execute Script
             // Calculate ausführen (Programmereignisse allgemein)
 
+            
+            // Documents Page
+            #region Documents Page
+
+            var documentsGroup = new PageGroupModel { Name = "Documents" };
+            AddCommand(documentsGroup, "GetDocument PDF", ExecuteGetDocumentAsPdf, largeGlyph: "InsertHeader_32x32.png", hint: "Get an open a document in PDF format", canExecuteDelegate: CanExecuteGetDocumentAsPdf);
+            dynamicDataPage.Groups.Add(documentsGroup);
+            
+            #endregion Documents Page
+            
             
             #region Playground Page
             // Initialisierung des Ribbons für unser PlugIn
