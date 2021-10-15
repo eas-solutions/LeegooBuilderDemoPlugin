@@ -15,6 +15,7 @@ using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
+using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
 using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
@@ -574,7 +575,13 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
 
         #region ExecuteMoveConfigurationItem-Command
-        private void ExecuteCloneConfigurationItem() { }
+
+        private void ExecuteCloneConfigurationItem()
+        {
+            var parameters = new InsertConfigurationItemParameters(SelectedConfigurationTreeItem.Branch(), SelectedConfigurationTreeItem.Value.ComponentID, TreeStructureItemInsertMode.After, ConfigurationItemOrigins.Manually);
+            ProjectAndConfigurationModel.InsertConfigurationItem(parameters, out var errorMessage);
+        }
+        
         private bool CanExecuteCloneConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
         #endregion ExecuteMoveConfigurationItem-Command
