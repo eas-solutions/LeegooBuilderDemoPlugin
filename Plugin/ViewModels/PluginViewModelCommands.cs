@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Threading;
 using System.Threading.Tasks;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
+using EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Helper;
 using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
@@ -242,19 +244,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
         
-        private bool CanExecuteReadPricingField(out string errorMessage)
-        {
-            if (SelectedConfigurationTreeItem == null)
-            {
-                errorMessage = "No configurationitem selected!";
-                return false;
-            }
+        private bool CanExecuteReadPricingField(out string errorMessage)  => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
-            errorMessage = string.Empty;
-            return true;
-        }
-
-        
+            
         private void ExecuteWritePricingField()
         {
             var pricingField = SelectedConfigurationTreeItem?.Value?.F01;
@@ -265,17 +257,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
         
-        private bool CanExecuteWritePricingField(out string errorMessage)
-        {
-            if (SelectedConfigurationTreeItem == null)
-            {
-                errorMessage = "No configurationitem selected!";
-                return false;
-            }
-
-            errorMessage = string.Empty;
-            return true;
-        }
+        private bool CanExecuteWritePricingField(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
         
         private void ExecuteShowBusiIndicator()
@@ -384,9 +366,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private bool CanExecuteLoadGlobalAttributes(out string errorMessage)
         {
-            if (SelectedConfigurationTreeItem == null)
+            if (!CheckIfConfigurationTreeItemIsSelected(out errorMessage))
             {
-                errorMessage = "No configurationitem selected!";
                 return false;
             }
 
@@ -455,7 +436,19 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
 
-        private bool CanExecuteSetLocalAttributes(out string errorMessage)
+        private bool CanExecuteSetLocalAttributes(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
+
+        #region Helpers
+
+
+        private void BeginUpdate() => ProjectAndConfigurationModel.BeginUpdateConfiguration();
+        private void EndUpdate() 
+        {
+            ProjectAndConfigurationModel.EndUpdateConfiguration();
+            RefreshConfigurationTree();
+        }
+        
+        private bool CheckIfConfigurationTreeItemIsSelected(out string errorMessage)
         {
             if (SelectedConfigurationTreeItem == null)
             {
@@ -467,6 +460,85 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             return true;
         }
 
+        //public event EventHandler RefreshConfigurationTreeEvent;
+        private void RefreshConfigurationTree()
+        {
+            //RefreshConfigurationTreeEvent?.Invoke(this, EventArgs.Empty);
+            eventAggregator.GetEvent<ExecuteConfigurationTreeSmartUpdateEvent>().Publish(null);
+            //ExecuteConfigurationTreeSmartUpdateEvent
+        }
+        
+        #endregion Helpers 
 
+        
+        #region ConfigurationItem-Commands
+        
+        
+        #region InsertElement-Command
+
+        private void ExecuteInsertElement()
+        {
+            // Baustein-ID abfragen
+            var elementId = InputBox.Query("Element Id");
+            var element = ProjectAndConfigurationModel.LoadByElementID(elementId);
+            if (element == null)
+            {
+                MessageBox.Show($"Element with id '{elementId}' not found.");
+                return;
+            }
+
+            
+            var internalElementId = element.InternalElementID;
+
+
+            BeginUpdate();
+            
+            // Neue Komponente einfügen
+            var parameters = new CreateConfigurationItemParameters(
+                internalElementId,
+                SelectedConfigurationTreeItem.Value.ComponentID,
+                TreeStructureItemInsertMode.AddFirstChild);
+
+            var newTreeItem = ProjectAndConfigurationModel.CreateConfigurationItemFromElement(parameters, out var errorMessage);
+
+            EndUpdate();
+        }
+
+        
+        private bool CanExecuteInsertElement(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage); 
+        
+        #endregion InsertElement-Command
+
+        
+        #region ExecuteUpdateConfigurationItem-Command
+        private void ExecuteUpdateConfigurationItem() { }
+        private bool CanExecuteUpdateConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
+
+        #endregion ExecuteUpdateConfigurationItem-Command
+        
+
+        #region ExecuteDeleteConfigurationItem-Command
+        private void ExecuteDeleteConfigurationItem() { }
+        private bool CanExecuteDeleteConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
+
+        #endregion ExecuteDeleteConfigurationItem-Command
+        
+
+        #region ExecuteMoveConfigurationItem-Command
+        private void ExecuteMoveConfigurationItem() { }
+        private bool CanExecuteMoveConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
+
+        #endregion ExecuteMoveConfigurationItem-Command
+
+
+        #region ExecuteMoveConfigurationItem-Command
+        private void ExecuteCloneConfigurationItem() { }
+        private bool CanExecuteCloneConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
+
+        #endregion ExecuteMoveConfigurationItem-Command
+
+        
+        #endregion ConfigurationItem-Commands
+        
     }
 }

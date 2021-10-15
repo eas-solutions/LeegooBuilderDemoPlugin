@@ -46,9 +46,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
         private void ExecuteConfigurationTreeSmartUpdate(object p)
         {
             // Baum aktualisieren
-            ConfigurationTreeList.BeginDataUpdate();
+            /*ConfigurationTreeList.BeginDataUpdate();
             ConfigurationTreeList.RefreshData();
-            ConfigurationTreeList.EndDataUpdate();
+            ConfigurationTreeList.EndDataUpdate();*/
 
             /*var treeItem = p as TreeStructureItem<ConfigurationItem>;
             if (treeItem != null)
@@ -59,6 +59,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
             // Aktuelle Node aufklappen
             var focusedNode = ConfigurationTreeList.GetSelectedNodes();
             if (focusedNode.Length > 0) focusedNode[0].ExpandAll();*/
+            
+            
+            if (Application.Current.Dispatcher.CheckAccess()) ConfigurationTreeList.RefreshData();
+            else Application.Current.Dispatcher.Invoke(new Action(() => { ConfigurationTreeList.RefreshData(); }));
+            
         }
 
     }

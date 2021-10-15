@@ -65,7 +65,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region Caption
 
         /// <summary>   Caption der Region (oben) </summary>
-        public override string Caption => "DemoPlugIn blablabla";
+        public override string Caption => "DemoPlugIn header"; // displayed in client area (upper left corner)
 
         #endregion
 
@@ -304,7 +304,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         /// <remarks>   M Fries, 04.05.2021. </remarks>
         protected override void SetUpUI()
         {
-            title = "TestTitel";
+            title = "TestTitel"; // displayed on page (bottom left)
         }
 
         #endregion
@@ -365,6 +365,29 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             AddCommand(pricingGroup, "Read", ExecuteReadPricingField, smallGlyph: "Dollar_16x16.png", hint: "Demonstrates reading a pricing field", canExecuteDelegate: CanExecuteReadPricingField);
             AddCommand(pricingGroup, "Write", ExecuteWritePricingField, smallGlyph: "Dollar_16x16.png", hint: "Demonstrates writing a pricing field", canExecuteDelegate: CanExecuteWritePricingField);
             page.Groups.Add(pricingGroup);
+
+            
+            
+            // 2nd page
+            var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
+            category.Pages.Add(dynamicDataPage);
+            
+            var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
+            AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteInsertElement);
+            AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
+            AddCommand(configurationItemGroup, "Delete", ExecuteDeleteConfigurationItem, largeGlyph: "Remove_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteDeleteConfigurationItem);
+            AddCommand(configurationItemGroup, "Move", ExecuteMoveConfigurationItem, largeGlyph: "MoveDown_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteMoveConfigurationItem);
+            AddCommand(configurationItemGroup, "Clone", ExecuteCloneConfigurationItem, largeGlyph: "Copy_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteCloneConfigurationItem);
+            dynamicDataPage.Groups.Add(configurationItemGroup);
+
+            // local Attribute
+            // global Attribute
+            // Pricingfield
+            
+            // Document
+            
+            // Execute Script
+            // Calculate
             
         }
 

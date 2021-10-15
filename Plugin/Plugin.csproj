@@ -105,6 +105,12 @@
     <Reference Include="DevExpress.Xpo.v21.1">
       <HintPath>$(LeegooBinaries)DevExpress.Xpo.v21.1.dll</HintPath>
     </Reference>
+    <Reference Include="EAS.DevExpressGenericDialogs">
+      <HintPath>$(LeegooBinaries)LeegooBuilder\Binaries\Debug-AnyCPU\EAS.DevExpressGenericDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="EAS.DevExpressGenericDialogs, Version=21.1.61.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\LeegooBuilder\Binaries\Debug-AnyCPU\EAS.DevExpressGenericDialogs.dll</HintPath>
+    </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
     </Reference>
@@ -173,6 +179,26 @@
     <Resource Include="Images\TreeIcons\SpecializedLongText_16x16.png" />
     <None Remove="Images\Ribbon\Dollar_16x16.png" />
     <Resource Include="Images\Ribbon\Dollar_16x16.png" />
+    <None Remove="Images\Ribbon\Remove_32x32.png" />
+    <Resource Include="Images\Ribbon\Remove_32x32.png" />
+    <None Remove="Images\Ribbon\InsertHeader_32x32.png" />
+    <Resource Include="Images\Ribbon\InsertHeader_32x32.png" />
+    <None Remove="Images\Ribbon\Filter_32x32.png" />
+    <Resource Include="Images\Ribbon\Filter_32x32.png" />
+    <None Remove="Images\Ribbon\CSharp_32x32.png" />
+    <Resource Include="Images\Ribbon\CSharp_32x32.png" />
+    <None Remove="Images\Ribbon\Copy_32x32.png" />
+    <Resource Include="Images\Ribbon\Copy_32x32.png" />
+    <None Remove="Images\Ribbon\AutoSum_32x32.png" />
+    <Resource Include="Images\Ribbon\AutoSum_32x32.png" />
+    <None Remove="Images\Ribbon\Add_32x32.png" />
+    <Resource Include="Images\Ribbon\Add_32x32.png" />
+    <None Remove="Images\Ribbon\WithTextWrapping_CenterLeft_32x32.png" />
+    <Resource Include="Images\Ribbon\WithTextWrapping_CenterLeft_32x32.png" />
+    <None Remove="Images\Ribbon\MoveDown_32x32.png" />
+    <Resource Include="Images\Ribbon\MoveDown_32x32.png" />
+    <None Remove="Images\Ribbon\Edit_32x32.png" />
+    <Resource Include="Images\Ribbon\Edit_32x32.png" />
   </ItemGroup>
 
   <ItemGroup>
