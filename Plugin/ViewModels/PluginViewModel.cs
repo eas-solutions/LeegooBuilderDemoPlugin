@@ -315,11 +315,47 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         {
             base.SetUpRibbonViewModel();
 
-            // Initialisierung des Ribbons für unser PlugIn
-            var page = new PageModel { Name = "DemoPlugIn Page" };
             var category = new CategoryModel();
             RibbonViewModel.Categories.Add(category);
-            category.Pages.Add(page);
+
+            
+
+            
+            
+            // Dynamic data page
+            #region DynamicData Page
+
+            var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
+            category.Pages.Add(dynamicDataPage);
+            
+            var ioGroup = new PageGroupModel { Name = "I/O" };
+            AddCommand(ioGroup, "Save", ExecuteSaveConfigurationItem, largeGlyph: "SaveAll_32x32.png", hint: "Save all data", canExecuteDelegate: CanExecuteSaveConfigurationItem);
+            dynamicDataPage.Groups.Add(ioGroup);
+            
+            var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
+            AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", hint: "Insert a new element", canExecuteDelegate: CanExecuteInsertElement);
+            AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", hint: "Increase the quantity by 1", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
+            AddCommand(configurationItemGroup, "Delete", ExecuteDeleteConfigurationItem, largeGlyph: "Remove_32x32.png",  hint: "Delete a configuration item", canExecuteDelegate: CanExecuteDeleteConfigurationItem);
+            AddCommand(configurationItemGroup, "Move down", () => ExecuteMoveConfigurationItem(MoveDirection.Down), largeGlyph: "MoveDown_32x32.png", hint: "Move the selected configuration item down", canExecuteDelegate: CanExecuteMoveConfigurationItem);
+            AddCommand(configurationItemGroup, "Move up", () => ExecuteMoveConfigurationItem(MoveDirection.Up), largeGlyph: "MoveUp_32x32.png",  hint: "Move the selected configuration item up", canExecuteDelegate: CanExecuteMoveConfigurationItem);
+            AddCommand(configurationItemGroup, "Clone", ExecuteCloneConfigurationItem, largeGlyph: "Copy_32x32.png", hint: "Create a 1:1 copy", canExecuteDelegate: CanExecuteCloneConfigurationItem);
+            dynamicDataPage.Groups.Add(configurationItemGroup);
+
+            #endregion DynamicData Page
+            
+            // local Attribute
+            // global Attribute
+            // Pricingfield
+            // VKFields (VkTextFields)
+            // Document
+            
+            // Execute Script
+            // Calculate ausführen (Programmereignisse allgemein)
+
+            
+            #region Playground Page
+            // Initialisierung des Ribbons für unser PlugIn
+            var page = new PageModel { Name = "Playground" };
 
             var doSomethingGroup = new PageGroupModel { Name = "Do Something Group" };
             page.Groups.Add(doSomethingGroup);
@@ -366,29 +402,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             AddCommand(pricingGroup, "Write", ExecuteWritePricingField, smallGlyph: "Dollar_16x16.png", hint: "Demonstrates writing a pricing field", canExecuteDelegate: CanExecuteWritePricingField);
             page.Groups.Add(pricingGroup);
 
-            
-            
-            // 2nd page
-            var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
-            category.Pages.Add(dynamicDataPage);
-            
-            var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
-            AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", hint: "Inserts a new element", canExecuteDelegate: CanExecuteInsertElement);
-            AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", hint: "Increases the quantity by 1", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
-            AddCommand(configurationItemGroup, "Delete", ExecuteDeleteConfigurationItem, largeGlyph: "Remove_32x32.png",  hint: "Deletes a configuration item", canExecuteDelegate: CanExecuteDeleteConfigurationItem);
-            AddCommand(configurationItemGroup, "Move down", () => ExecuteMoveConfigurationItem(MoveDirection.Down), largeGlyph: "MoveDown_32x32.png", hint: "Moves the selected configuration item down", canExecuteDelegate: CanExecuteMoveConfigurationItem);
-            AddCommand(configurationItemGroup, "Move up", () => ExecuteMoveConfigurationItem(MoveDirection.Up), largeGlyph: "MoveUp_32x32.png",  hint: "Moves the selected configuration item up", canExecuteDelegate: CanExecuteMoveConfigurationItem);
-            AddCommand(configurationItemGroup, "Clone", ExecuteCloneConfigurationItem, largeGlyph: "Copy_32x32.png", hint: "Creates a 1:1 copy", canExecuteDelegate: CanExecuteCloneConfigurationItem);
-            dynamicDataPage.Groups.Add(configurationItemGroup);
+            category.Pages.Add(page);
 
-            // local Attribute
-            // global Attribute
-            // Pricingfield
-            
-            // Document
-            
-            // Execute Script
-            // Calculate
+            #endregion Playground Page
             
         }
 

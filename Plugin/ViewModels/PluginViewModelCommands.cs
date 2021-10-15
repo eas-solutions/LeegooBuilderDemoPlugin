@@ -478,7 +478,16 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #endregion Helpers 
 
         
+        #region IO-Commands
         
+        private void ExecuteSaveConfigurationItem()
+        {
+            ProjectAndConfigurationModel.SaveDynamicData();
+        }
+        
+        private bool CanExecuteSaveConfigurationItem(out string errorMessage) => ClientValidator.ValidateCanExecuteSaveProposalChanges(ProjectAndConfigurationModel.SelectedProposal, ProjectAndConfigurationModel.IsRunningInTravelMode, out errorMessage);
+            
+        #endregion IO-Commands
         
         #region ConfigurationItem-Commands
         
