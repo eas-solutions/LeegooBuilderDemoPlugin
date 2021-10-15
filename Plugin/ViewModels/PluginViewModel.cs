@@ -373,11 +373,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             category.Pages.Add(dynamicDataPage);
             
             var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
-            AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteInsertElement);
-            AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
-            AddCommand(configurationItemGroup, "Delete", ExecuteDeleteConfigurationItem, largeGlyph: "Remove_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteDeleteConfigurationItem);
-            AddCommand(configurationItemGroup, "Move", ExecuteMoveConfigurationItem, largeGlyph: "MoveDown_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteMoveConfigurationItem);
-            AddCommand(configurationItemGroup, "Clone", ExecuteCloneConfigurationItem, largeGlyph: "Copy_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteCloneConfigurationItem);
+            AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", hint: "Inserts a new element", canExecuteDelegate: CanExecuteInsertElement);
+            AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", hint: "Increases the quantity by 1", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
+            AddCommand(configurationItemGroup, "Delete", ExecuteDeleteConfigurationItem, largeGlyph: "Remove_32x32.png",  hint: "Deletes a configuration item", canExecuteDelegate: CanExecuteDeleteConfigurationItem);
+            AddCommand(configurationItemGroup, "Move down", () => ExecuteMoveConfigurationItem(MoveDirection.Down), largeGlyph: "MoveDown_32x32.png", hint: "Moves the selected configuration item down", canExecuteDelegate: CanExecuteMoveConfigurationItem);
+            AddCommand(configurationItemGroup, "Move up", () => ExecuteMoveConfigurationItem(MoveDirection.Up), largeGlyph: "MoveUp_32x32.png",  hint: "Moves the selected configuration item up", canExecuteDelegate: CanExecuteMoveConfigurationItem);
+            AddCommand(configurationItemGroup, "Clone", ExecuteCloneConfigurationItem, largeGlyph: "Copy_32x32.png", hint: "Creates a 1:1 copy", canExecuteDelegate: CanExecuteCloneConfigurationItem);
             dynamicDataPage.Groups.Add(configurationItemGroup);
 
             // local Attribute

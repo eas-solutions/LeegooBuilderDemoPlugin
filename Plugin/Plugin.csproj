@@ -199,6 +199,8 @@
     <Resource Include="Images\Ribbon\MoveDown_32x32.png" />
     <None Remove="Images\Ribbon\Edit_32x32.png" />
     <Resource Include="Images\Ribbon\Edit_32x32.png" />
+    <None Remove="Images\Ribbon\MoveUp_32x32.png" />
+    <Resource Include="Images\Ribbon\MoveUp_32x32.png" />
   </ItemGroup>
 
   <ItemGroup>

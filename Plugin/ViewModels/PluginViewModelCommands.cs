@@ -25,6 +25,12 @@ using static System.FormattableString;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
+    enum MoveDirection
+    {
+        Up, Down
+    }
+    
+    
     partial class PluginViewModel
     {
         private ProjectsAndProposalsViewModel ProjectsAndProposalsViewModel => _projectsAndProposalsViewModel ?? (_projectsAndProposalsViewModel = serviceLocator.GetInstance<ProjectsAndProposalsViewModel>());
@@ -541,7 +547,27 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         
 
         #region ExecuteMoveConfigurationItem-Command
-        private void ExecuteMoveConfigurationItem() { }
+
+        private void ExecuteMoveConfigurationItem(MoveDirection moveDirection)
+        {
+            var parentId = SelectedConfigurationTreeItem.Parent.Value.ComponentID;
+            var errorMessage = string.Empty;
+            
+            switch (moveDirection)
+            {
+                case MoveDirection.Down:
+                    ProjectAndConfigurationModel.MoveConfigurationItem(SelectedConfigurationTreeItem, parentId, TreeStructureItemInsertMode.AddChild, null, out errorMessage);
+                    break;
+
+                case MoveDirection.Up:
+                    ProjectAndConfigurationModel.MoveConfigurationItem(SelectedConfigurationTreeItem, parentId, TreeStructureItemInsertMode.AddFirstChild, null, out errorMessage);
+                    break;
+                
+                default:
+                    throw new ArgumentException($"MoveDirection '{moveDirection}' not known.");
+            }
+            
+        }
         private bool CanExecuteMoveConfigurationItem(out string errorMessage) => CheckIfConfigurationTreeItemIsSelected(out errorMessage);
 
         #endregion ExecuteMoveConfigurationItem-Command
