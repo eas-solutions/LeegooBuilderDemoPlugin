@@ -616,8 +616,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             
             // test case: use the first document to be exported
             var proposalDocument = proposalDocuments.First();
-            var document = ProjectAndConfigurationModel.GetProposalDocument(proposalDocument.ProposalTextID);
+            //var document = ProjectAndConfigurationModel.GetProposalDocument(proposalDocument.ProposalTextID);
 
+            var getDocumentInfoParameters = new GetDocumentParameters(proposalId.Value, string.Empty, DocumentType.Proposal, DocumentFormat.Pdf, string.Empty, string.Empty, language, proposalDocument.ProposalTextID, 0, false);
+            var documentInfo = ProjectAndConfigurationModel.GetDocument(getDocumentInfoParameters);
+            
+            
             // create dialog
             var dialog = new SaveFileDialog();
             dialog.Title = "Save document as PDF";
@@ -629,7 +633,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             if (dialogResult == true)
             {
                 // save PDF to file
-                File.WriteAllBytes(dialog.FileName, document.Filedata);
+                //File.WriteAllBytes(dialog.FileName, document.Filedata);
+                File.WriteAllBytes(dialog.FileName, documentInfo.DocumentData);
 
                 // shell execute saved file
                 var ps = new ProcessStartInfo(dialog.FileName) { UseShellExecute = true, Verb = "open" };

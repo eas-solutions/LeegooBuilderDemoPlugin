@@ -40,12 +40,13 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         /// <remarks>   M Fries, 04.05.2021. </remarks>
         private void RegisterNavBarItem()
         {
-            // Position des NavigationBarItems innerhalb des Bereichs. 0 steht für ganz oben.
-            // Diese Einstellung kann in Systemeinstellungen überschrieben werden
+            // Position of NavigationBarItems in navigation bar. 0 means fist position, 1 means second position, etc.
             const int position = 0;
 
-            // Hier muss eine der drei möglichen Gruppen in der Navbar ausgewählt werden.
-            var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate("Proposals"), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
+            // Name Hier muss eine der drei möglichen Gruppen in der Navbar ausgewählt werden.
+            var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministration"
+                                         // To find out the possible values start LB in "TermyOnly" mode.
+            var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate(groupName), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
             
             navBarItem.IsEnabled = false;
 

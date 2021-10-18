@@ -109,7 +109,7 @@
       <HintPath>$(LeegooBinaries)LeegooBuilder\Binaries\Debug-AnyCPU\EAS.DevExpressGenericDialogs.dll</HintPath>
     </Reference>
     <Reference Include="EAS.DevExpressGenericDialogs, Version=21.1.61.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\LeegooBuilder\Binaries\Debug-AnyCPU\EAS.DevExpressGenericDialogs.dll</HintPath>
+      <HintPath>$(LeegooBinaries)\LeegooBuilder\Binaries\Debug-AnyCPU\EAS.DevExpressGenericDialogs.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
