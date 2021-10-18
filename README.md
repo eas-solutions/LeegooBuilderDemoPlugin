@@ -1,5 +1,5 @@
 <h1>
-# Sample PlugIn for LEEGOO BUILDER G3
+Sample PlugIn for LEEGOO BUILDER G3
 </h1>
 
 Todo: TOC
