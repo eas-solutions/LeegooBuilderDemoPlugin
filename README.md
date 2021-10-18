@@ -5,7 +5,7 @@
 Todo: TOC
 
 
-##Roundup
+## Roundup
 This is a demonstration of how to create a custom PlugIn which can be integratet into LEEGOO BUILDER G3.
 There are several examples already implement and more to come in future commitments.
 
@@ -141,7 +141,7 @@ Try to compile the project. No errors should occur.
 
 ## LEEGOO BUILDER integration
 LEEGOO BUILDER needs to be configured to load the PlugIn.<br>
-Go to the binaries folder (see above) and open `plugins.xaml`.
+Go to the binaries folder (see above) and open `plugins.xaml`.<br>
 Add the following nodes and make shure the path to your PlugIn is correct.
 ```xml
     <mod:ModuleGroup Name="Plugins" Description="User defined Plugins" BasePath=".\Plugins\">
