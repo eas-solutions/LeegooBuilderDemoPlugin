@@ -609,13 +609,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             var language = User.CurrentUser.LBUser.Language;
             var proposalDocuments = ProjectAndConfigurationModel.GetProposalDocumentsInfo(proposalId.Value, language, false);
             
-            // test case: use the first document to be exported
+            // test case: get the first document to be exported
             var proposalDocument = proposalDocuments.First();
-            //var document = ProjectAndConfigurationModel.GetProposalDocument(proposalDocument.ProposalTextID);
-
-            var getDocumentInfoParameters = new GetDocumentParameters(proposalId.Value, string.Empty, DocumentType.Proposal, DocumentFormat.Pdf, string.Empty, string.Empty, language, proposalDocument.ProposalTextID, 0, false);
-            var documentInfo = ProjectAndConfigurationModel.GetDocument(getDocumentInfoParameters);
-            
             
             // create dialog
             var dialog = new SaveFileDialog();
@@ -627,9 +622,11 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             var dialogResult = dialog.ShowDialog();
             if (dialogResult == true)
             {
+                // convert to PDF
+                var pdfData = ProjectAndConfigurationModel.GetProposalDocumentAsPDFByteArray(proposalDocument.ProposalTextID);
+
                 // save PDF to file
-                //File.WriteAllBytes(dialog.FileName, document.Filedata);
-                File.WriteAllBytes(dialog.FileName, documentInfo.DocumentData);
+                File.WriteAllBytes(dialog.FileName, pdfData);
 
                 // shell execute saved file
                 var ps = new ProcessStartInfo(dialog.FileName) { UseShellExecute = true, Verb = "open" };
