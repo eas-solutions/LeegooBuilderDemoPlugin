@@ -2,7 +2,22 @@
 Sample PlugIn for LEEGOO BUILDER G3
 </h1>
 
-Todo: TOC
+- [Roundup](#roundup)
+- [Getting Started](#getting-started)
+- [Requirements](#requirements)
+- [Adjustments](#adjustments)
+    * [1. Change several namings](#1-change-several-namings)
+    * [2. Source Code Adjustments](#2-source-code-adjustments)
+        + [2.1 PluginViewModel.cs](#21-pluginviewmodelcs)
+        + [2.2 AssemblyInfo.cs](#22-assemblyinfocs)
+        + [2.3 PluginMainModuleController.cs](#23-pluginmainmodulecontrollercs)
+        + [2.4 plugin_32x32.png](#24-plugin-32x32png)
+        + [2.5 PlugIn.csproj](#25-plugincsproj)
+        + [2.6 launchSettings.json](#26-launchsettingsjson)
+    * [3. Assembly References](#3-assembly-references)
+- [LEEGOO BUILDER integration](#leegoo-builder-integration)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
 ## Roundup
@@ -13,7 +28,7 @@ DevExpress is been used in this sample. <br>
 If you do not want to use this package, simply remove all references an usages containig "DevExpress".
 
 
-## Getting Started
+## <a name="getting-started"></a> Getting Started
 This Project can be found on GitHub.
 
 url: https://github.com/(ToDo)
