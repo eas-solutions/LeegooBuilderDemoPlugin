@@ -20,7 +20,7 @@ Sample PlugIn for LEEGOO BUILDER G3
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
-## Roundup
+## Roundup {#roundup}
 This is a demonstration of how to create a custom PlugIn which can be integratet into LEEGOO BUILDER G3.
 There are several examples already implement and more to come in future commitments.
 
@@ -36,18 +36,18 @@ url: https://github.com/(ToDo)
 It is recommendated to create a fork of this repository and store it in your own private repository on GitHub.
 
 
-## Requirements
+## Requirements {#requirements}
 The following requirements must be met.
 - A working installation of an up to date version of LEEGOO BUILDER G3
 - MS Visual Studio or another development environment
 - (optional) a personal GitHub account 
 
 
-## Adjustments
+## Adjustments {#adjustments}
 There are several things to be adjusted to make this project working on a developers machine.
 
 
-### 1. Change several namings ###
+### 1. Change several namings {#1-change-several-namings}
 Change the following file names according to your requirements:
 
 - PlugIn.csproj
