@@ -17,8 +17,6 @@ Sample PlugIn for LEEGOO BUILDER G3
     * [3. Assembly References](#3-assembly-references)
 - [LEEGOO BUILDER integration](#leegoo-builder-integration)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## Roundup {#roundup}
 This is a demonstration of how to create a custom PlugIn which can be integratet into LEEGOO BUILDER G3.
