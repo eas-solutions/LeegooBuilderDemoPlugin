@@ -28,7 +28,7 @@ DevExpress is been used in this sample. <br>
 If you do not want to use this package, simply remove all references an usages containig "DevExpress".
 
 
-## <a name="getting-started"></a> Getting Started
+## Getting Started {#getting-started}
 This Project can be found on GitHub.
 
 url: https://github.com/(ToDo)
