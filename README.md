@@ -59,9 +59,9 @@ Change the following file names according to your requirements:
 
 Do not forget to update the namespaces.
 
-### 2. Source Code Adjustments
+### 2. Source Code Adjustments {#2-source-code-adjustments}
 
-#### 2.1 PluginViewModel.cs
+#### 2.1 PluginViewModel.cs {#21-pluginviewmodelcs}
 ```c#
 public override string Caption => "DemoPlugIn header"; // displayed in client area (upper left corner)
 ...
@@ -72,7 +72,7 @@ protected override void SetUpUI()
 ```
 
 
-#### 2.2 AssemblyInfo.cs
+#### 2.2 AssemblyInfo.cs {#22-assemblyinfocs}
 Open AssemblyInfo.cs and update all relevant attributes.
 ```c#
 [assembly: AssemblyTitle("DemoPlugIn")]
@@ -89,7 +89,7 @@ Open AssemblyInfo.cs and update all relevant attributes.
 ```
 <br>
 
-#### 2.3 PluginMainModuleController.cs
+#### 2.3 PluginMainModuleController.cs {#23-pluginmainmodulecontrollercs}
 Open PluginMainModuleController.cs and find the method RegisterNavBarItem().<br>
 Change the values of position and groupName to define, where the PlugIn icon should appear in the navigation panel on the left side.
 Position is 0-based, groupName depends on your translations.<br> 
@@ -100,7 +100,7 @@ var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministrat
 ```
 <br>
 
-#### 2.4 plugin_32x32.png
+#### 2.4 plugin_32x32.png {#24-plugin-32x32png}
 Replace the existing glyph by your own image.<br>
 If you want to rename this file you must adapt the path in
 PlugInMainModuleController.RegisterNavBarItem().<br>
@@ -108,7 +108,7 @@ If you add icons, do not forget to set `Build action` to `Resource`.
 <br><br>
 
 
-#### 2.5 PlugIn.csproj
+#### 2.5 PlugIn.csproj {#25-plugincsproj}
 Open PlugIn.csproj and change the following nodes according to your requirements:
 - \<RootNamespace>
 - \<AssemblyName>
@@ -118,7 +118,7 @@ OutputPath should point to `PlugIns` your binaries folder (see above).
 <br><br> 
 
 
-#### 2.6 launchSettings.json
+#### 2.6 launchSettings.json {#26-launchsettingsjson}
 Open launchSettings.json and check, if both paths point to the correct folders.
 ```json
 {
@@ -133,7 +133,7 @@ Open launchSettings.json and check, if both paths point to the correct folders.
 ```
 
 
-### 3. Assembly References
+### 3. Assembly References {#3-assembly-references}
 This PlugIns needs references to several LEEGOO BUILDER assemblies. 
 The default destination path should be something like that:
 
@@ -154,7 +154,7 @@ Steps to adjust all references:
 Try to compile the project. No errors should occur.
 
 
-## LEEGOO BUILDER integration
+## LEEGOO BUILDER integration {#leegoo-builder-integration}
 LEEGOO BUILDER needs to be configured to load the PlugIn.<br>
 Go to the binaries folder (see above) and open `plugins.xaml`.<br>
 Add the following nodes and make shure the path to your PlugIn is correct.
