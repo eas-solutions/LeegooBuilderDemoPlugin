@@ -9,7 +9,7 @@ using PrismCompatibility.ServiceLocator;
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
 {
     /// <summary>
-    /// Interaktionslogik für PluginView.xaml
+    /// Code behind of PluginView.xaml
     /// </summary>
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -45,25 +45,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
 
         private void ExecuteConfigurationTreeSmartUpdate(object p)
         {
-            // Baum aktualisieren
-            /*ConfigurationTreeList.BeginDataUpdate();
-            ConfigurationTreeList.RefreshData();
-            ConfigurationTreeList.EndDataUpdate();*/
-
-            /*var treeItem = p as TreeStructureItem<ConfigurationItem>;
-            if (treeItem != null)
-            {
-                ConfigurationTreeList.SelectedItem = treeItem;
-            }
-
-            // Aktuelle Node aufklappen
-            var focusedNode = ConfigurationTreeList.GetSelectedNodes();
-            if (focusedNode.Length > 0) focusedNode[0].ExpandAll();*/
-            
-            
             if (Application.Current.Dispatcher.CheckAccess()) ConfigurationTreeList.RefreshData();
             else Application.Current.Dispatcher.Invoke(new Action(() => { ConfigurationTreeList.RefreshData(); }));
-            
         }
 
     }

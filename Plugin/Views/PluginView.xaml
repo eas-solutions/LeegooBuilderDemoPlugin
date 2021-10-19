@@ -27,22 +27,22 @@
             <converter:AoSelectToBooleanConverter x:Key="AoSelectToBooleanConverter" />
             <converter:AoSelectInheritedToBooleanConverter x:Key="AoSelectInheritedToBooleanConverter" />
 
-            <!--CellTemplate für die Spalte EditStateIndication (="!"). Hierdurch wird es möglich, die Spalte noch schmaler zu machen und trotzdem das "!"-Zeichen lesen zu können-->
+            <!--CellTemplate of column EditStateIndication (="!"). Trick to make this column even smaller.-->
             <DataTemplate x:Key="EditStateIndicationCellTemplate">
                 <Label Content="{Binding RowData.Row.Value.EditStateIndication}" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </DataTemplate>
 
-            <!--CellTemplate für die Spalte Anchor. Hierdurch wird es möglich, die Spalte noch schmaler zu machen.-->
+            <!--CellTemplate of column Anchor. Trick to make this column even smaller.-->
             <DataTemplate x:Key="AnchorCellTemplate">
                 <Label Foreground="{StaticResource AnchorForeGroundColor}" Background="{StaticResource AnchorBackGroundColor}" Content="{Binding RowData.Row.Anchor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </DataTemplate>
 
-            <!--CellTemplate für die Spalte HasAnySpecializedDescription. Ein Icon soll darstgestellt werden, wenn eine spezialisierte Benennung existiert.-->
+            <!--CellTemplate of column HasAnySpecializedDescription. Displays an icon, if there is a specialized Description.-->
             <DataTemplate x:Key="SpecializedDescriptionTemplate">
                 <Image Margin="0,2,0,0" Source="/EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule;component/Images/TreeIcons/SpecializedDescription_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedDescription, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
             </DataTemplate>
 
-            <!--CellTemplate für die Spalte HasAnySpecializedLongText. Ein Icon soll darstgestellt werden, wenn ein spezialisiertet Langtext existiert.-->
+            <!--CellTemplate of column HasAnySpecializedLongText. Displays an icon, if there is a specialized Longtext.-->
             <DataTemplate x:Key="SpecializedLongTextTemplate">
                 <Image Margin="0,2,0,0" Source="/EAS.LeegooBuilder.Client.GUI.Modules.DemoPluginModule;component/Images/TreeIcons/SpecializedLongText_16x16.png" Visibility="{Binding RowData.Row.Value.HasAnySpecializedLongText, Converter={StaticResource BooleanToVisibilityConverter}}" Stretch="None" />
             </DataTemplate>
@@ -55,20 +55,20 @@
         <Label Content="DemoPlugIn" FontSize="30"/>
 
 
-        <!--Projektliste-->
+        <!--list of projects-->
         <StackPanel Orientation="Horizontal">
             <ListBox Width="400" Height="200" ItemsSource="{Binding ListOfProjects}"></ListBox>
         </StackPanel>
 
 
-        <!-- SysCodes-Beispiel -->
+        <!-- SysCodes example -->
         <StackPanel Orientation="Horizontal">
             <Label Content="SysCodes-Test"/>
             <ComboBox Width="140" HorizontalAlignment="Left" ItemsSource="{Binding ProjectAndConfigurationModel.SysCodesDictionary[BELEGART]}" DisplayMemberPath="Text" SelectedValuePath="Code" />
         </StackPanel>
 
 
-        <!-- Konfigurationsbaum (erfordert DevExpress, wenn nicht vorhanden, bitte auskommentieren -->
+        <!-- ConfigurationTreeList (uses DevExpress, comment if this is not installed -->
         <dxg:TreeListControl Name="ConfigurationTreeList"
                              Height="300"
                              Margin="2"
@@ -77,11 +77,11 @@
 
             <dxg:TreeListControl.Resources>
 
-                <!--Style fuer das Einfaerben der EditState-Spalte um den Bearbeitungsstatus darzustellen-->
+                <!--Style for different colors of EditStates-->
                 <Style x:Key="CellBackgroundEditState" BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=LightweightCellStyle}}" TargetType="{x:Type dxg:LightweightCellEditor}">
                     <Style.Triggers>
 
-                        <!--Bearbeitungsstatus: in Arbeit-->
+                        <!--EditState: "editing"-->
                         <DataTrigger Binding="{Binding Path=RowData.Row.Value.EditStateInherited}" Value="Editing">
                             <Setter Property="Background" Value="{StaticResource EditStateEditingInheritedColor}" />
                         </DataTrigger>
@@ -90,7 +90,7 @@
                         </DataTrigger>
 
 
-                        <!--Bearbeitungsstatus: technisch Ok-->
+                        <!--EditState: "technical ok"-->
                         <DataTrigger Binding="{Binding Path=RowData.Row.Value.EditStateInherited}" Value="TechnicalOk">
                             <Setter Property="Background" Value="{StaticResource EditStateTechnicalOkInheritedColor}" />
                         </DataTrigger>
@@ -99,7 +99,7 @@
                         </DataTrigger>
 
 
-                        <!--Bearbeitungsstatus: Freigegeben-->
+                        <!--EditState: "released"-->
                         <DataTrigger Binding="{Binding Path=RowData.Row.Value.EditStateInherited}" Value="Released">
                             <Setter Property="Background" Value="{StaticResource EditStateReleasedInheritedColor}" />
                         </DataTrigger>
@@ -110,7 +110,8 @@
                     <Setter Property="TextBlock.FontWeight" Value="Bold" />
                 </Style>
 
-                <!--Style fuer die Hintergrundfarbe bei gesetzten AO-Select-->
+                
+                <!--Style for BackGround color if AOSelect has a value-->
                 <Style x:Key="RowBackgroundAoSelect" TargetType="{x:Type dxg:RowControl}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=Row.Value.Aoselect, Converter={StaticResource AoSelectInheritedToBooleanConverter}}" Value="True">
@@ -175,7 +176,7 @@
         </dxg:TreeListControl>
 
 
-        <!--aktuell im Konfigurationsbaum angewählte Komponente-->
+        <!--selected ConfigurationTreeItem-->
         <StackPanel Orientation="Horizontal">
             <Label Content="Selected Component:  "></Label>
             <Label Content="{Binding SelectedConfigurationTreeItem.Value.Description}"/>

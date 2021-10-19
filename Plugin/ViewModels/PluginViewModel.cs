@@ -64,7 +64,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         #region Caption
 
-        /// <summary>   Caption der Region (oben) </summary>
+        /// <summary>   caption of region (top) </summary>
         public override string Caption => "DemoPlugIn header"; // displayed in client area (upper left corner)
 
         #endregion
@@ -73,7 +73,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private TreeStructureItem<ConfigurationItem> _selectedConfigurationTreeItem;
 
-        /// <summary>   Ausgewähltes Configuration-TreeItem. </summary>
+        /// <summary>   selected Configuration-TreeItem. </summary>
         public TreeStructureItem<ConfigurationItem> SelectedConfigurationTreeItem
         {
             get => _selectedConfigurationTreeItem;
@@ -97,7 +97,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         private bool _visibilityOfEditStateIndicationColumnInConfigurationTree;
 
         /// <summary>
-        /// Steuert die Sichtbarkeit der Spalte 'EditStateIndication' in der Konfiguration (links)
+        /// Visibility of column 'EditStateIndication' in ConfigurationTree (left)
+        /// If there are no edit states, the column is hidden.
         /// </summary>
         public bool VisibilityOfEditStateIndicationColumnInConfigurationTree
         {
@@ -116,8 +117,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region VisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree
 
         /// <summary>
-        /// Steuert die Sichtbarkeit der Spalte 'HasAnySpecializedDescription' in der Konfiguration (links)
-        /// Wenn keine spezialisierten Benennungen existieren, wird die Spalte ausgeblendet.
+        /// Visibility of column 'HasAnySpecializedDescription' in ConfigurationTree (left)
+        /// If there are no specialized descriptions, the column is hidden.
         /// </summary>
         public bool VisibilityOfHasSpecializedDescriptionIndicationColumnInConfigurationTree
         {
@@ -137,8 +138,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region VisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree
 
         /// <summary>
-        /// Steuert die Sichtbarkeit der Spalte 'HasAnySpecializedLongText' in der Konfiguration (links)
-        /// Wenn keine spezialisierten Langtexte existieren, wird die Spalte ausgeblendet.
+        /// Visibility of column 'HasAnySpecializedLongText' in ConfigurationTree (left)
+        /// If there are no specialized longtexts, the column is hidden.
         /// </summary>
         public bool VisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree
         {
@@ -160,7 +161,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         private bool _visibilityOfAnchorColumnInConfigurationTree;
 
         /// <summary>
-        /// Steuert die Sichtbarkeit der Spalte 'Anchor' in der Konfiguration (links)
+        /// Visibility of column 'Anchor' in ConfigurationTree (left)
+        /// If there are no anchores, the column is hidden.
         /// </summary>
         public bool VisibilityOfAnchorColumnInConfigurationTree
         {
@@ -173,8 +175,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region ListOfProjects
 
         /// <summary>
-        /// Liste der Projekte
-        /// Diese wird beispielhaft im View in einer ListBox angezeigt
+        /// List of projects
+        /// These will be viewed in a ListBox
         /// </summary>
         public List<string> ListOfProjects
         {
@@ -211,7 +213,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         {
             TraceLogHelper.Log("DemoPlugInViewModel: Initialization (start)");
 
-            // Initialisierung des ViewModels
+            // Initialization of ViewModel
             serviceLocator = ServiceLocator.Current;
             
             TraceLogHelper.Log("DemoPlugInViewModel: Initialization (end)");
@@ -225,18 +227,18 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region OnNavigatedTo
 
         /// <summary>
-        /// Der User hat gerade unser PlugIn links in der NavigationBar aufgerufen
+        /// EventHandler: The user just selected our PlugIn in the  NavigationBar (left)
         /// </summary>
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             MouseHelper.WaitIdle();
 
-            // Sicherstellen, dass die Konfiguration geladen ist (für die Darstellung im TreeListControl)
+            // check, if the configuration has been loaded (fpr viewing in a TreeListControl)
             if (ProjectAndConfigurationModel.SelectedProposal.Configuration == null)
             {
                 Task.Factory.ExecuteAndWaitNonBlocking(() =>
                 {
-                    // 2019-01-11, vi: ProgressBar einschalten, wenn es sich lohnt. Siehe Schwellwert in den SE.
+                    // 2019-01-11, vi: Display ProgressBar if threashold is reached.
                     var threshold = Convert.ToInt16("0" + ProjectAndConfigurationModel?.GetSysSettingsParameterValue(SysSettingsParameter.ShowBusyIndicatorWhenLoadingConfigurationThreshold));
                     if (ProjectAndConfigurationModel?.SelectedProposal?.ComponentCount >= threshold)
                         StartProgressBar("LoadingConfiguration");
@@ -250,8 +252,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                     ProjectAndConfigurationModel.SelectedProposal.OnConfigured += OnConfigured;
                     ProjectAndConfigurationModel.SelectedProposal.OnCalculated += OnCalculated;
 
-                    // Hinweis:
-                    // Neue Events müssen in ViewClosed() wieder entfernt werden.
+                    // Hint:
+                    // Do not forget to remove used events in ViewClosed().
 
                     EndProgressBar();
                 });
@@ -262,7 +264,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             SetVisibilityOfHasSpecializedLongTextIndicationColumnInConfigurationTree();
 
 
-            // Programmereignisskript OnNavigatedTo() feuern
+            // Invoke OnNavigatedTo() in host application
             ProjectAndConfigurationModel.FireOnNavigatedTo(ProjectAndConfigurationModel.SelectedProposal, NavigationTargets.PlugIn, Name);
 
 
@@ -274,7 +276,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #region OnNavigatedFrom
 
         /// <summary>
-        /// Der User hat gerade unser PlugIn verlassen und ein anderes Module geöffnet
+        /// EventHandler: The user just leaves our PlugIn by selecting another module in the  NavigationBar (left)
         /// </summary>
         public override void OnNavigatedFrom(NavigationContext navigationContext)
         {
@@ -300,7 +302,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         
         #region SetUpUI
 
-        /// <summary>   Text auf dem Tabpage (unten) </summary>
+        /// <summary>   Text on PageControl-Tab (bottom) </summary>
         /// <remarks>   M Fries, 04.05.2021. </remarks>
         protected override void SetUpUI()
         {
@@ -311,6 +313,9 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         #region SetUpRibbonViewModel
 
+        /// <summary>
+        /// Create all ribbon controls
+        /// </summary>
         protected override void SetUpRibbonViewModel()
         {
             base.SetUpRibbonViewModel();
@@ -328,12 +333,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
             category.Pages.Add(dynamicDataPage);
 
-            // IO Page
+            // IO page
             var ioGroup = new PageGroupModel { Name = "I/O" };
             AddCommand(ioGroup, "Save", ExecuteSaveConfigurationItem, largeGlyph: "SaveAll_32x32.png", hint: "Save all data", canExecuteDelegate: CanExecuteSaveConfigurationItem);
             dynamicDataPage.Groups.Add(ioGroup);
             
-            // ConfigurationItem Page
+            // ConfigurationItem page
             var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
             AddCommand(configurationItemGroup, "Insert", ExecuteInsertElement, largeGlyph: "Add_32x32.png", hint: "Insert a new element", canExecuteDelegate: CanExecuteInsertElement);
             AddCommand(configurationItemGroup, "Update", ExecuteUpdateConfigurationItem, largeGlyph: "Edit_32x32.png", hint: "Increase the quantity by 1", canExecuteDelegate: CanExecuteUpdateConfigurationItem);
@@ -345,6 +350,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
             #endregion DynamicData Page
             
+            // ToDo:
             // local Attribute
             // global Attribute
             // Pricingfield
@@ -355,7 +361,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             // Calculate ausführen (Programmereignisse allgemein)
 
             
-            // Documents Page
+            // Documents page
             #region Documents Page
 
             var documentsGroup = new PageGroupModel { Name = "Documents" };
@@ -366,7 +372,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             
             
             #region Playground Page
-            // Initialisierung des Ribbons für unser PlugIn
+            
+            // Another PageModel
             var page = new PageModel { Name = "Playground" };
 
             var doSomethingGroup = new PageGroupModel { Name = "Do Something Group" };

@@ -48,7 +48,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
           
             ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
-            // Neue Komponente einfügen
+            // Insert a new ConfiturationItem
             var parameters = new CreateConfigurationItemParameters(
                 Guid.Parse("{6552C0AE-FCE3-E511-8B07-005056AB4E2A}"),  //"@_SCKCN",
                 SelectedConfigurationTreeItem.Value.ComponentID,
@@ -62,7 +62,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             ProjectAndConfigurationModel.EndUpdateConfiguration();
 
 
-            // Merkmal buchen
+            // set a GlobalAttribute
             var localAttributes = ProjectAndConfigurationModel.GetLocalAttributes(newTreeItem.Value.ComponentID, newTreeItem.Value.Element.InternalElementID, User.CurrentUser.LBUser.Language);
             var localAttributeInfo = localAttributes.FirstOrDefault(item => item.AttributeName == "LA_PO_01");
             if (localAttributeInfo != null)
@@ -70,11 +70,6 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                 localAttributeInfo.DataValue = "23";
                 ProjectAndConfigurationModel.SetLocalAttribute(newTreeItem.Value.ComponentID, localAttributeInfo);
             }
-
-
-
-
-            //NotImplemented();
         }
 
         private bool CanExecuteDoSomething(out string errorMessage)
@@ -146,7 +141,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         {
 
             var creationMode = NewProposalCreationMode.NewProposalWithoutReference;
-            Proposal sourceProposal = null; // wird nur bei Nachtrag/Kopie aus Musterbeleg benötigt
+            Proposal sourceProposal = null; // not needed (only when creating an appendx or a copy from template)
             var destinationProject = ProjectAndConfigurationModel.GetProject(ProjectAndConfigurationModel.SelectedProjectInfo.InternalProjectID);
 
 
@@ -162,14 +157,14 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                 out var errorMessageInfo);
 
 
-            // Grundkonfiguration anlegen
+            // Create initial Configuration
             var mainConfigurations = ProjectAndConfigurationModel.LoadConstructionKitHeaders(User.CurrentUser.LBUser.Language, MasterStructureType.MainConfiguration);
             var usedMainConfiguration = mainConfigurations?.First(); // hier in geeigneter Weise einen Eintrag ermitteln
             ProjectAndConfigurationModel.InitializeConfigurationFromConstructionKit(newProposal, usedMainConfiguration);
 
             //ProjectAndConfigurationModel.SaveProposal2(newProposal);
 
-            // Belegliste aktualisieren
+            // Update proposal list and select the new item
             ProjectAndConfigurationModel.MakeProposalVisible(newProposal);
         }
 
@@ -400,8 +395,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
 
 
-            // CustomDefinitions laden
-            // Das ist nur einmal erforderlich. Es handelt sich nur um die Definition. Die Werte stehen in der Proposal-Instanz.
+            // load the CustomDefinitions
+            // Only one call is neccessary. This is just the definition. Values are stored in the  proposal instance.
             var customDefinitions = ProjectAndConfigurationModel.GetCustomDefinitionsInfos(CustomDefinitionTableType.Proposal);
 
 
@@ -414,7 +409,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             var value = customDefinitionValue == null ? string.Empty : customDefinitionValue.StringValue;
 
 
-            MessageBox.Show($"Wert des Custom Definition Values {sampleCustomFieldName}: {value}");
+            MessageBox.Show($"Value of Custom Definition Values {sampleCustomFieldName}: {value}");
 
         }
 
@@ -500,7 +495,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private void ExecuteInsertElement()
         {
-            // Baustein-ID abfragen
+            // akst user for element id
             var elementId = InputBox.Query("Element Id");
             var element = ProjectAndConfigurationModel.LoadByElementID(elementId);
             if (element == null)
@@ -515,7 +510,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
             BeginUpdate();
             
-            // Neue Komponente einfügen
+            // Insert the ConfigurationItem
             var parameters = new CreateConfigurationItemParameters(
                 internalElementId,
                 SelectedConfigurationTreeItem.Value.ComponentID,

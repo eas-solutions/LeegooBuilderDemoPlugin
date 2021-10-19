@@ -36,21 +36,21 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
 
         #region RegisterNavBarItem
 
-        /// <summary>   Registriert das Plugin als Button in der Navigationsleiste. </summary>
+        /// <summary>   Register our PlugIn as item in the NavigationBar (left). </summary>
         /// <remarks>   M Fries, 04.05.2021. </remarks>
         private void RegisterNavBarItem()
         {
             // Position of NavigationBarItems in navigation bar. 0 means fist position, 1 means second position, etc.
             const int position = 0;
 
-            // Name Hier muss eine der drei möglichen Gruppen in der Navbar ausgewählt werden.
+            // Name of the Navigation-Group.
             var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministration"
                                          // To find out the possible values start LB in "TermyOnly" mode.
             var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate(groupName), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
             
             navBarItem.IsEnabled = false;
 
-            // Beispiel: Das NavigationBarItem soll nur anwählbar sein, wenn ein Beleg angewählt ist
+            // Example: The NavigationBarItem should only be enabled, if a proposal is selected.
             var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClient>();
             projectAndConfigurationModel.SelectedProposalChanged += (sender, e) =>
             {
