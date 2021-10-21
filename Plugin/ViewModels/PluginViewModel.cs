@@ -244,7 +244,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                         StartProgressBar("LoadingConfiguration");
 
                     ProjectAndConfigurationModel.LoadConfiguration(ProjectAndConfigurationModel.SelectedProposal);
-                    ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView.ViewName,
+                    ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView?.ViewName,
                         Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
 
                     ProjectAndConfigurationModel.SelectedProposal.PropertyChanged += SelectedProposalOnPropertyChanged;
@@ -333,10 +333,31 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             var dynamicDataPage = new PageModel { Name = "Dynamic Data" };
             category.Pages.Add(dynamicDataPage);
 
+            
             // IO page
             var ioGroup = new PageGroupModel { Name = "I/O" };
             AddCommand(ioGroup, "Save", ExecuteSaveConfigurationItem, largeGlyph: "SaveAll_32x32.png", hint: "Save all data", canExecuteDelegate: CanExecuteSaveConfigurationItem);
             dynamicDataPage.Groups.Add(ioGroup);
+            
+            
+            // Proposal page
+            var proposalGroup = new PageGroupModel { Name = "Proposal" };
+            AddCommand(proposalGroup, "Create", ExecuteCreateProposal, largeGlyph: "Add_32x32.png", hint: "Create a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
+            AddCommand(proposalGroup, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Show the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
+
+            _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
+            {
+                Caption = Translator.Translate("LockProposal"),
+                LargeGlyph = GlyphHelper.GetGlyph("/Images/Ribbon/locked_32x32.png", this),
+                Hint = Translator.Translate("LockProposalHint"),
+                GroupIndex = 53,
+                IsToggleChecked = false
+            };
+            proposalGroup.Commands.Add(_lockProposalToggleButtonCommand);
+
+
+            dynamicDataPage.Groups.Add(proposalGroup);
+            
             
             // ConfigurationItem page
             var configurationItemGroup = new PageGroupModel { Name = "ConfigurationItem" };
@@ -390,24 +411,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             AddCommand(doSomethingGroup, "Set local attributes", ExecuteSetLocalAttributes, smallGlyph: "upgrade_32x32.png", hint: "Sets some local attributes", canExecuteDelegate: CanExecuteSetLocalAttributes);
             
 
-            var proposalGroup = new PageGroupModel { Name = "Proposal Group" };
-            page.Groups.Add(proposalGroup);
+            var proposalGroup2 = new PageGroupModel { Name = "Proposal Group" };
+            page.Groups.Add(proposalGroup2);
 
-            AddCommand(proposalGroup, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Shows the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
-            AddCommand(proposalGroup, "Create Proposal", ExecuteCreateProposal, largeGlyph: "CreateProposal_32x32.png", hint: "Creates a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
-            AddCommand(proposalGroup, "Set Custom Property", ExecuteSetProposalCustomProperty, largeGlyph: "CustomProperty_32x32.png", hint: "Sets a custom definition value", canExecuteDelegate: CanExecuteSetProposalCustomProperty);
-
-
-
-            _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
-            {
-                Caption = Translator.Translate("LockProposal"),
-                LargeGlyph = GlyphHelper.GetGlyph("/Images/Ribbon/locked_32x32.png", this),
-                Hint = Translator.Translate("LockProposalHint"),
-                GroupIndex = 53,
-                IsToggleChecked = false
-            };
-            proposalGroup.Commands.Add(_lockProposalToggleButtonCommand);
+            //AddCommand(proposalGroup2, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Shows the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
+            //AddCommand(proposalGroup2, "Create Proposal", ExecuteCreateProposal, largeGlyph: "CreateProposal_32x32.png", hint: "Creates a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
+            AddCommand(proposalGroup2, "Set Custom Property", ExecuteSetProposalCustomProperty, largeGlyph: "CustomProperty_32x32.png", hint: "Sets a custom definition value", canExecuteDelegate: CanExecuteSetProposalCustomProperty);
 
 
 
