@@ -6,19 +6,18 @@ Sample PlugIn for LEEGOO BUILDER G3
 - [Getting Started](#getting-started)
 - [Requirements](#requirements)
 - [Adjustments](#adjustments)
-    * [1. Change several namings](#1-change-several-namings)
-    * [2. Source Code Adjustments](#2-source-code-adjustments)
-        + [2.1 PluginViewModel.cs](#21-pluginviewmodelcs)
-        + [2.2 AssemblyInfo.cs](#22-assemblyinfocs)
-        + [2.3 PluginMainModuleController.cs](#23-pluginmainmodulecontrollercs)
-        + [2.4 plugin_32x32.png](#24-plugin-32x32png)
-        + [2.5 PlugIn.csproj](#25-plugincsproj)
-        + [2.6 launchSettings.json](#26-launchsettingsjson)
-    * [3. Assembly References](#3-assembly-references)
+  - [1. Change several namings](#1-change-several-namings)
+  - [2. Source Code Adjustments](#2-source-code-adjustments)
+    - [2.1 PluginViewModel.cs](#21-pluginviewmodelcs)
+    - [2.2 AssemblyInfo.cs](#22-assemblyinfocs)
+    - [2.3 PluginMainModuleController.cs](#23-pluginmainmodulecontrollercs)
+    - [2.4 plugin_32x32.png](#24-plugin_32x32png)
+    - [2.5 PlugIn.csproj](#25-plugincsproj)
+    - [2.6 launchSettings.json](#26-launchsettingsjson)
+  - [3. Assembly References](#3-assembly-references)
 - [LEEGOO BUILDER integration](#leegoo-builder-integration)
 
-
-## Roundup {#roundup}
+## Roundup
 This is a demonstration of how to create a custom PlugIn which can be integratet into LEEGOO BUILDER G3.
 There are several examples already implement and more to come in future commitments.
 
@@ -26,26 +25,26 @@ DevExpress is been used in this sample. <br>
 If you do not want to use this package, simply remove all references an usages containig "DevExpress".
 
 
-## Getting Started {#getting-started}
+## Getting Started
 This Project can be found on GitHub.
 
-url: https://github.com/(ToDo)
+url: https://github.com/eas-solutions/LeegooBuilderDemoPlugin
 
 It is recommendated to create a fork of this repository and store it in your own private repository on GitHub.
 
 
-## Requirements {#requirements}
+## Requirements
 The following requirements must be met.
 - A working installation of an up to date version of LEEGOO BUILDER G3
 - MS Visual Studio or another development environment
 - (optional) a personal GitHub account 
 
 
-## Adjustments {#adjustments}
+## Adjustments
 There are several things to be adjusted to make this project working on a developers machine.
 
 
-### 1. Change several namings {#1-change-several-namings}
+### 1. Change several namings
 Change the following file names according to your requirements:
 
 - PlugIn.csproj
@@ -57,9 +56,9 @@ Change the following file names according to your requirements:
 
 Do not forget to update the namespaces.
 
-### 2. Source Code Adjustments {#2-source-code-adjustments}
+### 2. Source Code Adjustments
 
-#### 2.1 PluginViewModel.cs {#21-pluginviewmodelcs}
+#### 2.1 PluginViewModel.cs
 ```c#
 public override string Caption => "DemoPlugIn header"; // displayed in client area (upper left corner)
 ...
@@ -70,7 +69,7 @@ protected override void SetUpUI()
 ```
 
 
-#### 2.2 AssemblyInfo.cs {#22-assemblyinfocs}
+#### 2.2 AssemblyInfo.cs
 Open AssemblyInfo.cs and update all relevant attributes.
 ```c#
 [assembly: AssemblyTitle("DemoPlugIn")]
@@ -87,7 +86,7 @@ Open AssemblyInfo.cs and update all relevant attributes.
 ```
 <br>
 
-#### 2.3 PluginMainModuleController.cs {#23-pluginmainmodulecontrollercs}
+#### 2.3 PluginMainModuleController.cs
 Open PluginMainModuleController.cs and find the method RegisterNavBarItem().<br>
 Change the values of position and groupName to define, where the PlugIn icon should appear in the navigation panel on the left side.
 Position is 0-based, groupName depends on your translations.<br> 
@@ -98,7 +97,7 @@ var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministrat
 ```
 <br>
 
-#### 2.4 plugin_32x32.png {#24-plugin-32x32png}
+#### 2.4 plugin_32x32.png
 Replace the existing glyph by your own image.<br>
 If you want to rename this file you must adapt the path in
 PlugInMainModuleController.RegisterNavBarItem().<br>
@@ -106,7 +105,7 @@ If you add icons, do not forget to set `Build action` to `Resource`.
 <br><br>
 
 
-#### 2.5 PlugIn.csproj {#25-plugincsproj}
+#### 2.5 PlugIn.csproj
 Open PlugIn.csproj and change the following nodes according to your requirements:
 - \<RootNamespace>
 - \<AssemblyName>
@@ -116,7 +115,7 @@ OutputPath should point to `PlugIns` your binaries folder (see above).
 <br><br> 
 
 
-#### 2.6 launchSettings.json {#26-launchsettingsjson}
+#### 2.6 launchSettings.json
 Open launchSettings.json and check, if both paths point to the correct folders.
 ```json
 {
@@ -131,7 +130,7 @@ Open launchSettings.json and check, if both paths point to the correct folders.
 ```
 
 
-### 3. Assembly References {#3-assembly-references}
+### 3. Assembly References
 This PlugIns needs references to several LEEGOO BUILDER assemblies. 
 The default destination path should be something like that:
 
@@ -152,7 +151,7 @@ Steps to adjust all references:
 Try to compile the project. No errors should occur.
 
 
-## LEEGOO BUILDER integration {#leegoo-builder-integration}
+## LEEGOO BUILDER integration
 LEEGOO BUILDER needs to be configured to load the PlugIn.<br>
 Go to the binaries folder (see above) and open `plugins.xaml`.<br>
 Add the following nodes and make shure the path to your PlugIn is correct.
