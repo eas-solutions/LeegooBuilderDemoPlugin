@@ -111,7 +111,7 @@ Open PlugIn.csproj and change the following nodes according to your requirements
 - \<AssemblyName>
 - \<OutputPath>
 
-OutputPath should point to `PlugIns` your binaries folder (see above).
+OutputPath should point to `PlugIns` in your binaries folder (see above).
 <br><br> 
 
 
