@@ -138,7 +138,6 @@
 
     <!--DevExpress Abghänigkeiten-->
 
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="PresentationCore" />
     <Reference Include="System.Web" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
+using EAS.LeegooBuilder.Common.CommonTypes.Definitions;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using PrismCompatibility;
 using PrismCompatibility.ServiceLocator;
@@ -12,7 +12,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
     /// Code behind of PluginView.xaml
     /// </summary>
     [Export]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicyAttributeNonShared]
     public partial class PluginView : UserControl
     {
         private IDisposable _configurationTreeSmartUpdateEvent;
