@@ -47,11 +47,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministration"
                                          // To find out the possible values start LB in "TermyOnly" mode.
             var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate(groupName), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
-            
-            navBarItem.IsEnabled = false;
 
             // Example: The NavigationBarItem should only be enabled, if a proposal is selected.
             var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClient>();
+            navBarItem.IsEnabled = projectAndConfigurationModel.SelectedProposal != null;
             projectAndConfigurationModel.SelectedProposalChanged += (sender, e) =>
             {
                 var isSelected = projectAndConfigurationModel.SelectedProposal != null;
