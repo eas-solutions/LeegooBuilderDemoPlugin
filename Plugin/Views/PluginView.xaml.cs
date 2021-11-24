@@ -12,7 +12,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Views
     /// Code behind of PluginView.xaml
     /// </summary>
     [Export]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicy(CreationPolicy.NonShared)] 
     public partial class PluginView : UserControl
     {
         private IDisposable _configurationTreeSmartUpdateEvent;
