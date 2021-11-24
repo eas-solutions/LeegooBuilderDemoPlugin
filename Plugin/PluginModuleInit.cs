@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
-using PrismCompatibility.Module;
+﻿using PrismCompatibility.Module;
 using PrismCompatibility.ServiceLocator;
+using EAS.LeegooBuilder.Common.CommonTypes.Definitions;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
 {
@@ -9,7 +9,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         private readonly IServiceLocator _serviceLocator;
         private PluginMainModuleController _pluginMainModuleController;
 
-        [ImportingConstructor]
+        //[ImportingConstructor]
         public PluginModuleInit(IServiceLocator serviceLocator)
         {
             _serviceLocator = serviceLocator;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -13,6 +12,7 @@ using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
 using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.ServiceClient.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
+using EAS.LeegooBuilder.Common.CommonTypes.Definitions;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
@@ -27,7 +27,7 @@ using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
     [Export]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicyAttributeNonShared]
     public partial class PluginViewModel : UserSettingsAwareClientViewModelBase
     {
         private DXToggleButtonCommand _lockProposalToggleButtonCommand;
@@ -204,7 +204,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         #region Constructors
 
-        [ImportingConstructor]
+        //[ImportingConstructor]
         public PluginViewModel(IEventAggregator eventAggregator,
                                   ProjectAndConfigurationClient projectAndConfigurationModel,
                                   ITranslator translator,
