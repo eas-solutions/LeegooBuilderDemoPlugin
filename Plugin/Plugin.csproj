@@ -219,5 +219,8 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-
+  
+  <PropertyGroup>
+    <NoWarn>CA1416</NoWarn>
+  </PropertyGroup>
 </Project>
