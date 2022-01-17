@@ -116,13 +116,15 @@ OutputPath should point to `PlugIns` in your binaries folder (see above).
 
 
 #### 2.6 launchSettings.json
-Open launchSettings.json and check, if both paths point to the correct folders.
+Open launchSettings.json and check, if both paths point to the correct folders.\
+`executablePath`: Since .NET 5 the Shell DLL path needs to be specified instead of the EXE path
+
 ```json
 {
   "profiles": {
     "Plugin": {
       "commandName": "Executable",
-      "executablePath": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU\\EAS.LeegooBuilder.Client.GUI.Shell.exe",
+      "executablePath": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU\\EAS.LeegooBuilder.Client.GUI.Shell.dll",
       "workingDirectory": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU"
     }
   }
