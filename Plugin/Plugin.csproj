@@ -106,8 +106,8 @@
     <Reference Include="DevExpress.Xpo.v21.2">
       <HintPath>$(LeegooBinaries)DevExpress.Xpo.v21.2.dll</HintPath>
     </Reference>
-    <Reference Include="EAS.DevExpressGenericDialogs, Version=21.2.30.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(LeegooBinaries)LeegooBuilder\Binaries\Debug-x64\EAS.DevExpressGenericDialogs.dll</HintPath>
+    <Reference Include="EAS.DevExpressGenericDialogs">
+      <HintPath>$(LeegooBinaries)EAS.DevExpressGenericDialogs.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Client.Common.ToolsAndUtilities">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.dll</HintPath>
@@ -133,11 +133,6 @@
     <Reference Include="EasDataTransfer">
       <HintPath>$(LeegooBinaries)EasDataTransfer.dll</HintPath>
     </Reference>
-
-    <!--DevExpress Abghänigkeiten-->
-    
-    <Reference Include="PresentationCore" />
-    <Reference Include="System.Web" />
   </ItemGroup>
 
 
