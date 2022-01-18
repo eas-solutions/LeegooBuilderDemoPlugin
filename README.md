@@ -162,3 +162,23 @@ Add the following nodes and make shure the path to your PlugIn is correct.
         <mod:ModuleDefinition Path="DemoPlugin\EAS.LeegooBuilder.Client.GUI.Modules.Plugin.dll"/>
     </mod:ModuleGroup>
 ```
+
+## Framework Migration LEEGOO BUILDER (.NET48 -> .NET6.0)
+
+### .csproj
+- `<TargetFramework>`: Change `net48` to `net6.0-windows`
+- Add `<UseWPF>true</UseWPF>` to a `<PropertyGroup>`
+- Add `<UseWindowsForms>true</UseWindowsForms>` to a `<PropertyGroup>`
+
+\
+Are Referenced implicitly and can be removed:
+- `<Reference Include="PresentationCore" />`
+- `<Reference Include="System.Web" />`
+
+
+### launchSettings.json
+`executablePath` needs to point to the DLL executable instead of the EXE file
+
+
+### ViewModels
+May ask for new `using`s like `EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;`
