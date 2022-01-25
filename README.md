@@ -30,7 +30,7 @@ This Project can be found on GitHub.
 
 url: https://github.com/eas-solutions/LeegooBuilderDemoPlugin
 
-It is recommendated to create a fork of this repository and store it in your own private repository on GitHub.
+It is recommended to create a fork of this repository and store it in your own private repository on GitHub.
 
 
 ## Requirements
