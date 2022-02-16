@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
-using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
 using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.ServiceClient.MVVM;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.Definitions;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
-using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
@@ -401,6 +399,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             page.Groups.Add(doSomethingGroup);
 
             AddCommand(doSomethingGroup, "Do Something", ExecuteDoSomething, largeGlyph: "pass_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Click here to do something", canExecuteDelegate: CanExecuteDoSomething);
+            AddCommand(doSomethingGroup, "GenericDialog LoadingBar", ExecuteFakeLoadingBar, largeGlyph: "pass_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Display the GenericDialogs LoadingBar", canExecuteDelegate: CanExecuteDoSomething);
+            AddCommand(doSomethingGroup, "Generic Dialogs Popup", ExecuteGenericDialogsPopup, largeGlyph: "pass_32x32.png", keyGesture: new KeyGesture(Key.F2), hint: "Display a Generic Dialogs Popup", canExecuteDelegate: CanExecuteDoSomething);
             AddCommand(doSomethingGroup, "Do Something Else", ExecuteDoSomethingElse, smallGlyph: "fail_32x32.png", hint: "Click here to do something else", canExecuteDelegate: CanExecuteDoSomethingElse);
             AddCommand(doSomethingGroup, "Filter Elements", ExecuteDoFilterElements, smallGlyph: "find_32x32.png", hint: "Shows how to select some elements", canExecuteDelegate: CanExecuteDoFilterElements);
             AddCommand(doSomethingGroup, "Show BusiInicator", ExecuteShowBusiIndicator, smallGlyph: "process_32x32.png", hint: "Shows the busy indicator vor 5 seconds", canExecuteDelegate: CanExecuteShowBusiIndicator);

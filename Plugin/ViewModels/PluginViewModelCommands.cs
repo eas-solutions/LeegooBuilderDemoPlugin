@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Management.Instrumentation;
 using System.Threading;
 using System.Threading.Tasks;
+using EAS.DevExpressGenericDialogs.Dialogs;
+using EAS.DevExpressGenericDialogs.Model;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.ViewModels;
 using EAS.LeegooBuilder.Client.GUI.Modules.Plugin.Helper;
-using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.Common.CommonTypes.Constants;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
-using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
-using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
-using EAS.LeegooBuilder.Common.CommonTypes.DocumentGeneratorClasses;
 using Microsoft.Win32;
 using static System.FormattableString;
 
@@ -644,6 +642,38 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         
             
         #endregion Documents-Commands
+
+        private void ExecuteFakeLoadingBar()
+        {
+            DevexpressLoadingBar.Show("Fake Loading...");
+            Thread.Sleep(1000);
+            DevexpressLoadingBar.ChangeText("Fake update proposal...");
+            Thread.Sleep(200);
+            DevexpressLoadingBar.ChangeText("Fake saving changes...");
+            Thread.Sleep(1500);
+            DevexpressLoadingBar.ChangeText("Fake completing process...");
+            DevexpressLoadingBar.Hide();
+        }
         
+        private void ExecuteGenericDialogsPopup()
+        {
+            var dialog2 = new FormDialog("Form Dialog","This is an example of the new and improved Form Dialog");
+            var parameter = new FormDialogParameter
+            {
+                DialogTitle = "Test Dialog",
+                Message = "Test Text for Dialog",
+            };
+            
+            var text = dialog2.AddTextbox("Textbox");
+            var combo = dialog2.AddCombobox("Combobox", new List<object> { "123", "234" });
+            
+            var button = dialog2.AddButton("Button", "Open");
+            button.ButtonClick += () => text.TextEdit.Text = "Button Clicked";
+            
+            if (dialog2.ShowDialog(System.Windows.MessageBoxButton.OK) == System.Windows.MessageBoxResult.OK)
+            {
+                MessageBox.Show("Popup closed");
+            }
+        }
     }
 }
