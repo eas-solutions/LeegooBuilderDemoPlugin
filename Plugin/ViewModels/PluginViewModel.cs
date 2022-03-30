@@ -353,6 +353,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             };
             proposalGroup.Commands.Add(_lockProposalToggleButtonCommand);
 
+            AddCommand(proposalGroup, "Update Proposal List", ExecuteUpdateProposalList, largeGlyph: "Update_32x32.png", hint: "Updates the proposal list in View 'Projects and Proposals'", canExecuteDelegate: CanExecuteUpdateProposalList);
 
             dynamicDataPage.Groups.Add(proposalGroup);
             

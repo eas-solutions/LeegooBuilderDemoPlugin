@@ -19,6 +19,9 @@ using EAS.LeegooBuilder.Common.CommonTypes.EventTypes.Programmereignismethoden;
 using EAS.LeegooBuilder.Common.CommonTypes.Helpers;
 using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Common.CommonTypes.Parameterclasses;
+using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
+using EAS.LeegooBuilder.Common.Security.Definitions;
+using EAS.LeegooBuilder.Common.Security.SecurityActions;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
@@ -226,6 +229,20 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
 
+        private void ExecuteUpdateProposalList()
+        {
+            ProjectAndConfigurationModel.GetProposals(ProjectAndConfigurationModel?.SelectedProjectInfo?.InternalProjectID);
+            ProjectsAndProposalsViewModel.UpdateProposalList();
+        }
+        
+        
+        private bool CanExecuteUpdateProposalList(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+            
+            
         private void ExecuteSelectSomething()
         {
             var sqlResult = (string)ProjectAndConfigurationModel.SqlExecuteScalar("select VALUE from SYS_SETTINGS where PARAMETER='KURZBEZ'");

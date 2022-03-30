@@ -115,6 +115,9 @@
     <Reference Include="EAS.LeegooBuilder.Client.GUI.Modules.MainModule">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
     </Reference>
+    <Reference Include="EAS.LeegooBuilder.Common.Security, Version=99.99.99.99, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\LeegooBuilder\Binaries\Debug-AnyCPU\EAS.LeegooBuilder.Common.Security.dll</HintPath>
+    </Reference>
     <Reference Include="EAS.LeegooBuilder.ServiceClient">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.ServiceClient.dll</HintPath>
     </Reference>
@@ -195,6 +198,8 @@
     <Resource Include="Images\Ribbon\MoveUp_32x32.png" />
     <None Remove="Images\Ribbon\SaveAll_32x32.png" />
     <Resource Include="Images\Ribbon\SaveAll_32x32.png" />
+    <None Remove="Images\Ribbon\Update_32x32.png" />
+    <Resource Include="Images\Ribbon\Update_32x32.png" />
   </ItemGroup>
 
   <ItemGroup>
