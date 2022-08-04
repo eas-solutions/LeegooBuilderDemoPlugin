@@ -23,6 +23,7 @@ using EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper;
 using EAS.LeegooBuilder.Common.Security.Definitions;
 using EAS.LeegooBuilder.Common.Security.SecurityActions;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Attributes;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
@@ -49,7 +50,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
           
             ProjectAndConfigurationModel.BeginUpdateConfiguration();
 
-            // Insert a new ConfiturationItem
+            // Insert a new ConfigurationItem
             var parameters = new CreateConfigurationItemParameters(
                 Guid.Parse("{6552C0AE-FCE3-E511-8B07-005056AB4E2A}"),  //"@_SCKCN",
                 SelectedConfigurationTreeItem.Value.ComponentID,
@@ -63,7 +64,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             ProjectAndConfigurationModel.EndUpdateConfiguration();
 
 
-            // set a GlobalAttribute
+            // Set a LocalAttribute
             var localAttributes = ProjectAndConfigurationModel.GetLocalAttributes(newTreeItem.Value.ComponentID, newTreeItem.Value.Element.InternalElementID, User.CurrentUser.LBUser.Language);
             var localAttributeInfo = localAttributes.FirstOrDefault(item => item.AttributeName == "LA_PO_01");
             if (localAttributeInfo != null)
@@ -71,6 +72,22 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                 localAttributeInfo.DataValue = "23";
                 ProjectAndConfigurationModel.SetLocalAttribute(newTreeItem.Value.ComponentID, localAttributeInfo);
             }
+            
+
+            // Set a GlobalAttribute
+            //ProjectAndConfigurationModel.LoadGlobalAttributes(SelectedConfigurationTreeItem.Value);
+            var globalAttributes = SelectedConfigurationTreeItem?.Value.GlobalAttributes;
+            MessageBox.Show($"global attributes = {globalAttributes.Count}");
+            var globalAttribute = globalAttributes.FirstOrDefault(item => item.Name == "COOLINGWATER");
+
+            if (globalAttribute != null)
+            {
+                globalAttribute.AttributeValue = "100";
+                globalAttribute.ValueSource = 9; // manuelle Eingabe
+
+                ProjectAndConfigurationModel.SaveGlobalAttributes(new List<GlobalAttribute>() { globalAttribute });
+            }
+            
         }
 
         private bool CanExecuteDoSomething(out string errorMessage)
@@ -231,8 +248,54 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private void ExecuteUpdateProposalList()
         {
-            ProjectAndConfigurationModel.GetProposals(ProjectAndConfigurationModel?.SelectedProjectInfo?.InternalProjectID);
-            ProjectsAndProposalsViewModel.UpdateProposalList();
+            // Test mit Belegerstellung
+            var creationMode = NewProposalCreationMode.NewProposalWithoutReference;
+            Proposal sourceProposal = null; // not needed (only when creating an appendx or a copy from template)
+            
+            
+            var destinationProject = ProjectAndConfigurationModel.GetProject(ProjectAndConfigurationModel.SelectedProjectInfo.InternalProjectID);
+//            var destinationProject = ProjectAndConfigurationModel.GetProject(new Guid("03A4C3B8-0DBD-EA11-B80E-0050568F5578"));
+
+            // Als Kopie
+            creationMode = NewProposalCreationMode.NewProposalFromTemplate;
+            //sourceProposal = ProjectAndConfigurationModel.GetProposal(new Guid("22055893-8174-EC11-9FBF-00D861D0BDD9"));
+            //sourceProposal = ProjectAndConfigurationModel.GetFavoriteProposals(User.CurrentUser.LBUser).FirstOrDefault();
+            sourceProposal = ProjectAndConfigurationModel.SelectedProposal;
+            
+            var createNewProposalIdArgs = new CreateNewProposalIdArgs { CreationMode = creationMode, SourceProposal = sourceProposal, DestinationProject = destinationProject };
+            var newProposalId = ProjectAndConfigurationModel.GenerateNewProposalId(creationMode, destinationProject.InternalProjectID, sourceProposal?.InternalProposalID ?? Guid.Empty, out var proposalIdMainPart, out var proposalIdAppendixPart, out var editableDefinition);
+            var newProposal = ProjectAndConfigurationModel.CreateNewProposal(createNewProposalIdArgs,
+                newProposalId,
+                proposalIdMainPart,
+                proposalIdAppendixPart,
+                User.CurrentUser.LBUser.UserID,
+                new ClientDetails(true),
+                out var errorMessageInfo);
+            
+            if (!string.IsNullOrEmpty(errorMessageInfo?.MessageText))
+            {
+                MessageBox.Show(errorMessageInfo.MessageText);
+                return;
+            }
+
+            if (creationMode == NewProposalCreationMode.NewProposalWithoutReference)
+            {
+                // Create initial Configuration
+                var mainConfigurations = ProjectAndConfigurationModel.LoadConstructionKitHeaders(User.CurrentUser.LBUser.Language, MasterStructureType.MainConfiguration);
+                var usedMainConfiguration = mainConfigurations?.First(); // hier in geeigneter Weise einen Eintrag ermitteln
+                ProjectAndConfigurationModel.InitializeConfigurationFromConstructionKit(newProposal, usedMainConfiguration);
+            }
+
+
+
+            //ProjectAndConfigurationModel.GetProposals(ProjectAndConfigurationModel?.SelectedProjectInfo?.InternalProjectID);
+            //var internalProjectID = ProjectsAndProposalsViewModel.LoadAllProposals ? null : ProjectAndConfigurationModel?.SelectedProjectInfo?.InternalProjectID;
+            //ProjectAndConfigurationModel.GetProposals(internalProjectID);
+            
+            //ProjectsAndProposalsViewModel.UpdateProposalList();
+            
+            ProjectsAndProposalsViewModel.UpdateProposalList(EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper.ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.Insert);
+
         }
         
         
