@@ -4,7 +4,7 @@
       "commandName": "Executable",
       //"executablePath": "C:\\Quelltexte\\Gittea\\LeegooBuilder\\Binaries\\Debug-x64\\EAS.LeegooBuilder.Client.GUI.Shell.dll",
       //"workingDirectory": "C:\\Quelltexte\\Gittea\\LeegooBuilder\\Binaries\\Debug-x64"
-      "executablePath": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU\\EAS.LeegooBuilder.Client.GUI.Shell.dll",
+      "executablePath": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU\\EAS.LeegooBuilder.Client.GUI.Shell.exe",
       "workingDirectory": "c:\\Quelltexte\\.Gitea\\LeegooBuilder\\Binaries\\Debug-AnyCPU"
     }
   }

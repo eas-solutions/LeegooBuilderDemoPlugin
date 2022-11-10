@@ -116,7 +116,7 @@
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Client.GUI.Modules.MainModule.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.Common.Security, Version=99.99.99.99, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\LeegooBuilder\Binaries\Debug-AnyCPU\EAS.LeegooBuilder.Common.Security.dll</HintPath>
+      <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.Common.Security.dll</HintPath>
     </Reference>
     <Reference Include="EAS.LeegooBuilder.ServiceClient">
       <HintPath>$(LeegooBinaries)EAS.LeegooBuilder.ServiceClient.dll</HintPath>
@@ -134,8 +134,9 @@
       <HintPath>$(LeegooBinaries)PrismCompatibility.dll</HintPath>
     </Reference>
     <Reference Include="EasDataTransfer">
-      <HintPath>$(LeegooBinaries)EasDataTransfer.dll</HintPath>
+      <HintPath>$(LeegooBinaries)Eas.DataTransfer.dll</HintPath>
     </Reference>
+    
   </ItemGroup>
 
 
