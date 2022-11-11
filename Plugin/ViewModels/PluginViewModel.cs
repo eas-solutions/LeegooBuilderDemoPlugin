@@ -18,6 +18,7 @@ using EAS.LeegooBuilder.Common.CommonTypes.Interfaces;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Global;
+using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
 using PrismCompatibility;
 using PrismCompatibility.ServiceLocator;
 using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.MessageBox;
@@ -245,6 +246,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                     ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView?.ViewName,
                         Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
 
+                    LoadCompaniesAndPersons(ProjectAndConfigurationModel.SelectedProposal);
+                    
                     ProjectAndConfigurationModel.SelectedProposal.PropertyChanged += SelectedProposalOnPropertyChanged;
                     ProjectAndConfigurationModel.SelectedProposal.Configuration.Root.OnTreeItemChanged += RootOnOnTreeItemChanged;
                     ProjectAndConfigurationModel.SelectedProposal.OnConfigured += OnConfigured;
@@ -440,6 +443,75 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         #endregion
 
         #endregion
+
+        
+        #region LoadCompaniesAndPersons
+
+        /// <summary>
+        /// Shows, how to load several company- and person data
+        /// </summary>
+        /// <param name="proposal"></param>
+        private void LoadCompaniesAndPersons(Proposal proposal)
+        {
+            proposal.BeginUpdate();
+
+            // Anbieter laden
+            if ((proposal.Company1ID != null) && (proposal.Company1 == null))
+                proposal.Company1 = ProjectAndConfigurationModel.GetCompanyByPrimaryKey((Guid)proposal.Company1ID);
+            
+            // Kunde laden
+            if ((proposal.Company2ID != null) && (proposal.Company2 == null))
+                proposal.Company2 = ProjectAndConfigurationModel.GetCompanyByPrimaryKey((Guid)proposal.Company2ID);
+
+            // Person1 laden
+            if ((proposal.Person1ID != null) && (proposal.Person1 == null))
+                proposal.Person1 = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Person1ID);
+
+            // Person2 laden
+            if ((proposal.Person2ID != null) && (proposal.Person2 == null))
+                proposal.Person2 = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Person2ID);
+            
+            // Person3 laden
+            if ((proposal.Person3ID != null) && (proposal.Person3 == null))
+                proposal.Person3 = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Person3ID);
+            
+            // Person4 laden
+            if ((proposal.Person4ID != null) && (proposal.Person4 == null))
+                proposal.Person4 = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Person4ID);
+
+            // Owner1 laden
+            if ((proposal.Owner1 == null) && (proposal.Owner1ID != null))
+            {
+                proposal.Owner1 = ProjectAndConfigurationModel.GetUserPrimaryKey((Guid)proposal.Owner1ID);
+                if ((proposal.Owner1 != null) && (proposal.Owner1.PersonID != null)) proposal.Owner1.Person = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Owner1.PersonID);
+            }
+
+            // Owner2 laden
+            if ((proposal.Owner2 == null) && (proposal.Owner2ID != null))
+            {
+                proposal.Owner2 = ProjectAndConfigurationModel.GetUserPrimaryKey((Guid)proposal.Owner2ID);
+                if ((proposal.Owner2 != null) && (proposal.Owner2.PersonID != null)) proposal.Owner2.Person = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Owner2.PersonID);
+            }
+
+            // Owner3 laden
+            if ((proposal.Owner3 == null) && (proposal.Owner3ID != null))
+            {
+                proposal.Owner3 = ProjectAndConfigurationModel.GetUserPrimaryKey((Guid)proposal.Owner3ID);
+                if ((proposal.Owner3 != null) && (proposal.Owner3.PersonID != null)) proposal.Owner3.Person = ProjectAndConfigurationModel.GetPersonByPrimaryKey((Guid)proposal.Owner3.PersonID);
+            }
+
+            if (proposal.RepresentativePerson == null && proposal.RepresentativePersonID != null)
+                proposal.RepresentativePerson = ProjectAndConfigurationModel.GetPersonByPrimaryKey(proposal.RepresentativePersonID.Value);
+
+            if ((proposal.RepresentativeCompanyID != null) && (proposal.RepresentativeCompany == null))
+                proposal.RepresentativeCompany = ProjectAndConfigurationModel.GetCompanyByPrimaryKey(proposal.RepresentativeCompanyID.Value);
+
+            
+            proposal.EndUpdate();
+        }
+        
+        #endregion LoadCompaniesAndPersons
+        
 
         private void OnConfigured(TreeStructureItem<ConfigurationItem> configurationItem)
         {
