@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.MVVM;
+using EAS.LeegooBuilder.Client.GUI.Modules.MainModule;
 using EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels;
 using EAS.LeegooBuilder.ServiceClient;
 using EAS.LeegooBuilder.Common.CommonTypes.EventTypes;
+using EAS.LeegooBuilder.Common.CommonTypes.Extensions;
 using EAS.LeegooBuilder.Common.CommonTypes.Models;
 using EAS.LeegooBuilder.Server.DataAccess.Core;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
@@ -43,6 +47,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             // Position of NavigationBarItems in navigation bar. 0 means fist position, 1 means second position, etc.
             const int position = 0;
 
+            
+            // Im Standard ferhält sich ein Modul der Gruppe 'Main' im NavigationPanel so, dass es die eigene Lasche (unten) ausblendet, wenn ein anderes Modul der Gruppe 'Main' geöffnet wird.
+            // Dieses Standardverhalten kann hier geändert werden. Wird die folgende Variable auf false gesetzt, bleibt die Lasche des PlugIns stets sichtbar.
+            //_hidePlugInWhileOtherReagionIsAvtive = false;
+            
+            
             // Name of the Navigation-Group.
             var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministration"
                                          // To find out the possible values start LB in "TermyOnly" mode.
@@ -69,8 +79,57 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
 
         #endregion
 
+        
+        private List<IRegion> HiddenRegions { get; set; }
+        
+        
+        /// <summary>
+        /// Angegebene Region anzeigen und bisherige aktive Region verbergen
+        /// </summary>
+        /// <param name="region">Anzuzeigende Region</param>
+        protected override void ShowRegion(IRegion region, List<OpenedRegion> opendRegions)
+        {
+            // Alle Regions ausblenden, die zur 1. Gruppe in Navigator gehören ("Main"). 
+            opendRegions.Where(item => item.ModuleController is MainModuleController).ForEach(item =>
+            {
+                if (shellService.IsRegionVisible(item.Region))
+                {
+                    shellService.SetRegionViewVisibility(item.Region, false);
+
+                    HiddenRegions ??= new List<IRegion>();
+                    HiddenRegions.Add(item.Region);
+                }
+            });
+            
+            shellService.SetRegionViewVisibility(region, true);
+        }
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Region ausblenden (zum Überschreiben in abgeleiteten Controllern, z.B. durch PlugIns) </summary>
+        ///
+        /// <remarks>   T Vitt, 10.11.2022. </remarks>
+        ///
+        /// <param name="region">   . </param>
+        /// <param name="opendRegions"></param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        protected override void HideRegion(IRegion region, List<OpenedRegion> opendRegions)
+        {
+            shellService.SetRegionViewVisibility(region, false);
+            
+            // in ShowRegion() ausgeblendete Regions wieder einblenden 
+            HiddenRegions?.ForEach(hiddenRegion => shellService.SetRegionViewVisibility(hiddenRegion, false));
+        }
+
+        
         #region Event Handlers
 
+
+        private void ModuleSelected(ViewModelBase newViewModel)
+        {
+            
+        }
+        
+        
         private void ProjectAndConfigurationModelOnConfigurationItemAdded(TreeStructureItem<ConfigurationItem> configurationItem)
         {
 
