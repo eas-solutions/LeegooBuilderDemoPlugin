@@ -176,8 +176,8 @@ Are Referenced implicitly and can be removed:
 
 
 ### launchSettings.json
-`executablePath` needs to point to the DLL executable instead of the EXE file
+~~`executablePath` needs to point to the DLL executable instead of the EXE file~~
 
 
 ### ViewModels
-May ask for new `using`s like `EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;`
+May ask for new `using``s` like `EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;`
