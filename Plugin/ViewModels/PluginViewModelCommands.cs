@@ -187,6 +187,46 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
         }
 
 
+        private void ExecuteCreateAppendix()
+        {
+            var creationMode = NewProposalCreationMode.NewAppendix;
+            Proposal sourceProposal = ProjectAndConfigurationModel.SelectedProposal;
+            var destinationProject =  ProjectAndConfigurationModel.GetProject(ProjectAndConfigurationModel.SelectedProjectInfo.InternalProjectID);
+            
+
+            var createNewProposalIdArgs = new CreateNewProposalIdArgs { CreationMode = creationMode, SourceProposal = sourceProposal, DestinationProject = destinationProject };
+            var newProposalId = ProjectAndConfigurationModel.GenerateNewProposalId(creationMode, destinationProject.InternalProjectID, sourceProposal?.InternalProposalID ?? Guid.Empty, out var proposalIdMainPart, out var proposalIdAppendixPart, out var editableDefinition);
+
+            var newProposal = ProjectAndConfigurationModel.CreateNewProposal(createNewProposalIdArgs,
+                newProposalId,
+                proposalIdMainPart,
+                proposalIdAppendixPart,
+                User.CurrentUser.LBUser.UserID,
+                new ClientDetails(true),
+                out var errorMessageInfo);
+
+            
+            //ProjectsAndProposalsViewModel.UpdateProposalList(EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper.ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.ClearAll);
+
+            ProjectAndConfigurationModel.SelectedProposal = newProposal;
+            ProjectsAndProposalsViewModel.UpdateProposalList(EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper.ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.Insert);
+            //ProjectsAndProposalsViewModel.UpdateProposalList(EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper.ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.LoadAll);
+            //ProjectsAndProposalsViewModel.UpdateProposalGridPropertyAndValueList(ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.LoadAll);
+            //ProjectsAndProposalsViewModel.ProposalGridPropertyAndValueList = ProjectsAndProposalsViewModel.LoadProposalGridPropertyAndValueList();
+            
+            
+            /*ProposalGridPropertyAndValueListSettings proposalGridPropertyAndValueListSettings = new ProposalGridPropertyAndValueListSettings()
+            {
+                CustomDefinitionInfos = _listOfCustomDefinitionInfos,
+                SystemViewColumnTemplateItemList = _systemViewColumnTemplateItemList,
+                DictionarySystemProposalViewColumnTemplates = _dictionarySystemProposalViewColumnTemplates,
+                SysCodes = ProjectAndConfigurationModel.SysCodes,
+                LoginCultureInfoName = ProjectAndConfigurationModel.LoginCultureInfo.Name
+            };            
+            ProjectsAndProposalsViewModel.ProposalGridPropertyAndValueList = ProjectAndConfigurationModel?.GetProposalsGridPropertyAndValueList(proposalGridPropertyAndValueListSettings);*/
+        }
+        
+
         private bool CanExecuteCreateProposal(out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -293,7 +333,8 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             //ProjectAndConfigurationModel.GetProposals(internalProjectID);
             
             //ProjectsAndProposalsViewModel.UpdateProposalList();
-            
+
+            ProjectsAndProposalsViewModel.ProposalGridSelectedItem = null;
             ProjectsAndProposalsViewModel.UpdateProposalList(EAS.LeegooBuilder.Common.CommonTypes.ProposalHelper.ProposalGridUpdateTypeEnumsClass.ProposalGridUpdateType.Insert);
 
         }

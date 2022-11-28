@@ -344,6 +344,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             // Proposal page
             var proposalGroup = new PageGroupModel { Name = "Proposal" };
             AddCommand(proposalGroup, "Create", ExecuteCreateProposal, largeGlyph: "Add_32x32.png", hint: "Create a new proposal", canExecuteDelegate: CanExecuteCreateProposal);
+            AddCommand(proposalGroup, "Create Appendix", ExecuteCreateAppendix, largeGlyph: "Add_32x32.png", hint: "Create appendix", canExecuteDelegate: CanExecuteCreateProposal);
             AddCommand(proposalGroup, "Show Proposal Id", ExecuteShowProposalId, largeGlyph: "check_32x32.png", hint: "Show the Id of the selected proposal", canExecuteDelegate: CanExecuteShowProposalId);
 
             _lockProposalToggleButtonCommand = new DXToggleButtonCommand(ExecuteToggleLockProposal, CanExecuteToggleLockProposal)
