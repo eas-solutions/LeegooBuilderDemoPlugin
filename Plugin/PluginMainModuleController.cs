@@ -32,7 +32,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         /// <remarks>   M Fries, 04.05.2021. </remarks>
         public PluginMainModuleController()
         {
-            PluginRegion = shellService.GetRegion(RegionName);
+            PluginRegion = ShellService.GetRegion(RegionName);
             RegisterNavBarItem();
         }
 
@@ -56,7 +56,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             // Name of the Navigation-Group.
             var groupName = "Proposals"; // or "ProductAdministration" or "SystemAdministration"
                                          // To find out the possible values start LB in "TermyOnly" mode.
-            var navBarItem = RegisterViewModel<PluginViewModel>(translator.Translate(groupName), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
+            var navBarItem = RegisterViewModel<PluginViewModel>(Translator.Translate(groupName), position, GlyphHelper.GetGlyph("/Images/NavigationBar/plugin_32x32.png", this), "Demo Plugin");
 
             // Example: The NavigationBarItem should only be enabled, if a proposal is selected.
             var projectAndConfigurationModel = ServiceLocator.Current.GetInstance<ProjectAndConfigurationClient>();
@@ -92,16 +92,16 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             // Alle Regions ausblenden, die zur 1. Gruppe in Navigator gehören ("Main"). 
             opendRegions.Where(item => item.ModuleController is MainModuleController).ForEach(item =>
             {
-                if (shellService.IsRegionVisible(item.Region))
+                if (ShellService.IsRegionVisible(item.Region))
                 {
-                    shellService.SetRegionViewVisibility(item.Region, false);
+                    ShellService.SetRegionViewVisibility(item.Region, false);
 
                     HiddenRegions ??= new List<IRegion>();
                     HiddenRegions.Add(item.Region);
                 }
             });
             
-            shellService.SetRegionViewVisibility(region, true);
+            ShellService.SetRegionViewVisibility(region, true);
         }
         
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,10 +114,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected override void HideRegion(IRegion region, List<OpenedRegion> opendRegions)
         {
-            shellService.SetRegionViewVisibility(region, false);
+            ShellService.SetRegionViewVisibility(region, false);
             
             // in ShowRegion() ausgeblendete Regions wieder einblenden 
-            HiddenRegions?.ForEach(hiddenRegion => shellService.SetRegionViewVisibility(hiddenRegion, false));
+            HiddenRegions?.ForEach(hiddenRegion => ShellService.SetRegionViewVisibility(hiddenRegion, false));
         }
 
         
