@@ -48,7 +48,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             const int position = 0;
 
             
-            // Im Standard ferhält sich ein Modul der Gruppe 'Main' im NavigationPanel so, dass es die eigene Lasche (unten) ausblendet, wenn ein anderes Modul der Gruppe 'Main' geöffnet wird.
+            // Im Standard verhält sich ein Modul der Gruppe 'Main' im NavigationPanel so, dass es die eigene Lasche (unten) ausblendet, wenn ein anderes Modul der Gruppe 'Main' geöffnet wird.
             // Dieses Standardverhalten kann hier geändert werden. Wird die folgende Variable auf false gesetzt, bleibt die Lasche des PlugIns stets sichtbar.
             //_hidePlugInWhileOtherReagionIsAvtive = false;
             

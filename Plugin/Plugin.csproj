@@ -28,83 +28,83 @@
 
   <ItemGroup>
     <!--Leegoo Abhänigkeiten-->
-    <Reference Include="DevExpress.Charts.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Charts.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Charts.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Charts.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.CodeParser.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.CodeParser.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.CodeParser.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Data.Desktop.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Data.Desktop.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Data.Desktop.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Data.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Data.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Data.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.DataAccess.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.DataAccess.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.DataAccess.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Mvvm.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Mvvm.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Mvvm.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Mvvm.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Office.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Office.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Office.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Office.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Pdf.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Pdf.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Pdf.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Printing.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Printing.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Printing.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.RichEdit.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.1.Export">
-      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v22.1.Export.dll</HintPath>
+    <Reference Include="DevExpress.RichEdit.v23.1.Export">
+      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v23.1.Export.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Controls.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Controls.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Controls.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Controls.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Core.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Core.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Core.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Docking.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Docking.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Docking.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Docking.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.DocumentViewer.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.DocumentViewer.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.DocumentViewer.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.ExpressionEditor.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.ExpressionEditor.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.ExpressionEditor.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.ExpressionEditor.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Grid.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Grid.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v22.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Layout.v22.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Layout.v23.1.Core">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Layout.v23.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.LayoutControl.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.LayoutControl.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.NavBar.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.NavBar.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.NavBar.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.NavBar.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Printing.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Printing.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Printing.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Ribbon.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Ribbon.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Ribbon.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Ribbon.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.RichEdit.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.RichEdit.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.RichEdit.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.RichEdit.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Themes.Office2016White.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Themes.Office2016White.v23.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v22.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpo.v22.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpo.v23.1">
+      <HintPath>$(LeegooBinaries)DevExpress.Xpo.v23.1.dll</HintPath>
     </Reference>
     <Reference Include="EAS.DevExpressGenericDialogs">
       <HintPath>$(LeegooBinaries)EAS.DevExpressGenericDialogs.dll</HintPath>
