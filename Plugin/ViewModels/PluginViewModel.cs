@@ -293,7 +293,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         public override void OnLeaveView(ref bool cancelLeaving)
         {
-            //cancelClosing = true;
+            //cancelLeaving = true;
         }
 
         #endregion
