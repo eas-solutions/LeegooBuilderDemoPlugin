@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Platforms>x64</Platforms>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
@@ -26,86 +26,49 @@
   </PropertyGroup>
 
 
+  <!--externe Abhänigkeiten-->
   <ItemGroup>
-    <!--Leegoo Abhänigkeiten-->
-    <Reference Include="DevExpress.Charts.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Charts.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.CodeParser.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.CodeParser.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Data.Desktop.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Data.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.DataAccess.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.DataAccess.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Mvvm.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Mvvm.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Office.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Office.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Pdf.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Pdf.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Printing.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v23.1.Export">
-      <HintPath>$(LeegooBinaries)DevExpress.RichEdit.v23.1.Export.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Controls.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Controls.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Core.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Docking.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Docking.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.DocumentViewer.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.DocumentViewer.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.ExpressionEditor.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.ExpressionEditor.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Grid.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v23.1.Core">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Layout.v23.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.LayoutControl.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.NavBar.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.NavBar.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Printing.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Ribbon.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Ribbon.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.RichEdit.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.RichEdit.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpf.Themes.Office2016White.v23.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v23.1">
-      <HintPath>$(LeegooBinaries)DevExpress.Xpo.v23.1.dll</HintPath>
-    </Reference>
+    <PackageReference Include="DevExpress.CodeParser" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Core.de" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Grid.de" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Map" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.PdfViewer" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.PropertyGrid" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.PropertyGrid.de" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Scheduler" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.SpellChecker" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Spreadsheet" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Wpf.Diagram" Version="23.2.6" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="HelixToolkit.Core.Wpf" Version="2.25.0" />
+    <PackageReference Include="Simple-MAPI.NET" Version="1.2.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="morelinq" Version="4.2.0" />
+    <PackageReference Include="NamedPipeWrapper.NetCore" Version="1.0.0" />
+    <PackageReference Include="NLog" Version="5.3.2" />
+    <PackageReference Include="System.Composition.AttributedModel" Version="8.0.0" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="System.Reactive" Version="6.0.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="WpfColorFontDialog" Version="1.0.8" />
+    <PackageReference Include="Tulpep.ActiveDirectoryObjectPicker" Version="3.0.11" />
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
+
+    <PackageReference Include="ActiproSoftware.Controls.WPF.SyntaxEditor" Version="23.1.4" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.SyntaxEditor.Addons.DotNet" Version="23.1.4" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.SyntaxEditor.Addons.XML" Version="23.1.4" />
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+
+  </ItemGroup>
+
+
+  <!--Leegoo Abhänigkeiten-->
+  <ItemGroup>
     <Reference Include="EAS.DevExpressGenericDialogs">
       <HintPath>$(LeegooBinaries)EAS.DevExpressGenericDialogs.dll</HintPath>
     </Reference>

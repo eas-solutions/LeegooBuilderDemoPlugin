@@ -21,7 +21,8 @@ using EAS.LeegooBuilder.Server.DataAccess.Core.Global;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
 using PrismCompatibility;
 using PrismCompatibility.ServiceLocator;
-using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.MessageBox;
+//using MessageBox = EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels.MessageBox;
+using MessageBox = System.Windows.MessageBox;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
@@ -243,7 +244,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
                         StartProgressBar("LoadingConfiguration");
 
                     ProjectAndConfigurationModel.LoadConfiguration(ProjectAndConfigurationModel.SelectedProposal);
-                    ProjectAndConfigurationModel.LoadCalculationDataForProposal(User.CurrentUser.CurrentCalculationSystemView?.ViewName,
+                    ProjectAndConfigurationModel.LoadCalculationDataForProposal(ProjectAndConfigurationModel.SelectedProposal.InternalProposalID, User.CurrentUser.CurrentCalculationSystemView?.ViewName,
                         Translator.EAS_Language, User.CurrentUser.LBUser.UserID);
 
                     LoadCompaniesAndPersons(ProjectAndConfigurationModel.SelectedProposal);

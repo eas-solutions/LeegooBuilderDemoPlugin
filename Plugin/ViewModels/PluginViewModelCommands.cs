@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using EAS.DevExpressGenericDialogs.Dialogs;
 using EAS.DevExpressGenericDialogs.Model;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Interfaces;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.ViewModels;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
@@ -28,7 +30,11 @@ using EAS.LeegooBuilder.Server.DataAccess.Core.Configuration;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Elements;
 using EAS.LeegooBuilder.Server.DataAccess.Core.Proposals;
 using Microsoft.Win32;
+using MessageBox = System.Windows.MessageBox;
 using static System.FormattableString;
+using MessageBoxButton = EAS.LeegooBuilder.Common.CommonTypes.Helpers.MessageBoxButton;
+using MessageBoxImage = EAS.LeegooBuilder.Common.CommonTypes.Helpers.MessageBoxImage;
+using MessageBoxResult = EAS.LeegooBuilder.Common.CommonTypes.Helpers.MessageBoxResult;
 
 namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 {
@@ -415,7 +421,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
             const string scriptName = "HelloWorld";
             var script = ProjectAndConfigurationModel.LoadScriptByName(scriptName);
             if (script == null)
-                MessageBox.Show("Scipt 'HelloWorld' not found!", MessageBoxType.Error);
+                MessageBox.Show("Scipt 'HelloWorld' not found!");
 
             else
             {
@@ -661,7 +667,10 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin.ViewModels
 
         private void ExecuteDeleteConfigurationItem()
         {
-            if (MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (serviceLocator.GetInstance<IMessageBox>().Show("Are you sure?", // Sollen die Unterkomponenten von '%1' erhalten bleiben?
+                    Translator.Translate("Confirmation"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question,
+                    MessageBoxResult.No) == MessageBoxResult.Yes)
             {
                 BeginUpdate();
                 ProjectAndConfigurationModel.DeleteConfigurationItem(SelectedConfigurationTreeItem.Value.ComponentID);
