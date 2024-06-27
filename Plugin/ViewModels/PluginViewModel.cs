@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.DevExpressHelper;
+using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Events;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Extensions;
 using EAS.LeegooBuilder.Client.Common.ToolsAndUtilities.Views.Helpers;
 using EAS.LeegooBuilder.Client.GUI.Modules.MainModule.Models;
