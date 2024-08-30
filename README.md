@@ -162,7 +162,7 @@ Add the following nodes and make shure the path to your PlugIn is correct.
     </mod:ModuleGroup>
 ```
 
-## Exclusively Region
+## Exclusive region
 Modules are being displayed on the botton of the window as tabs.<br>
 The normal behaviour is that all modules of the first group of the navigation bar (left) are exclusively displayed.<br>
 It's possible to change this behaviour so that a PlugIns Region is still visible when other modules are open.<br>
