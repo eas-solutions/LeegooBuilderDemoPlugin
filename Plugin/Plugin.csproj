@@ -28,17 +28,17 @@
 
   <!--externe Abhänigkeiten-->
   <ItemGroup>
-    <PackageReference Include="DevExpress.CodeParser" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Core.de" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Grid.de" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Map" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.PdfViewer" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.PropertyGrid" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.PropertyGrid.de" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Scheduler" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.SpellChecker" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Spreadsheet" Version="23.2.6" />
-    <PackageReference Include="DevExpress.Wpf.Diagram" Version="23.2.6" />
+    <PackageReference Include="DevExpress.CodeParser" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Core.de" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Grid.de" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Map" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.PdfViewer" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.PropertyGrid" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.PropertyGrid.de" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Scheduler" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.SpellChecker" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Spreadsheet" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Diagram" Version="24.1.5" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="HelixToolkit.Core.Wpf" Version="2.25.0" />
     <PackageReference Include="Simple-MAPI.NET" Version="1.2.1" />

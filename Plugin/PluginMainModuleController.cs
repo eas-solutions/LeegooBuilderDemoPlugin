@@ -24,6 +24,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         private IRegion PluginRegion { get; set; }
         protected override IRegion GetRegion(Type viewModelType) => viewModelType == typeof(PluginViewModel) ? PluginRegion : null;
 
+        private bool _hidePlugInRegionWhileOtherRegionIsActive = true;
         #endregion
 
         #region Constructors
@@ -50,7 +51,7 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
             
             // Im Standard verhält sich ein Modul der Gruppe 'Main' im NavigationPanel so, dass es die eigene Lasche (unten) ausblendet, wenn ein anderes Modul der Gruppe 'Main' geöffnet wird.
             // Dieses Standardverhalten kann hier geändert werden. Wird die folgende Variable auf false gesetzt, bleibt die Lasche des PlugIns stets sichtbar.
-            //_hidePlugInWhileOtherReagionIsAvtive = false;
+            _hidePlugInRegionWhileOtherRegionIsActive = true;
             
             
             // Name of the Navigation-Group.
@@ -89,6 +90,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         /// <param name="region">Anzuzeigende Region</param>
         protected override void ShowRegion(IRegion region, List<OpenedRegion> opendRegions)
         {
+            if (!_hidePlugInRegionWhileOtherRegionIsActive)
+            {
+                base.ShowRegion(region, opendRegions);
+                return;
+            }
+            
             // Alle Regions ausblenden, die zur 1. Gruppe in Navigator gehören ("Main"). 
             opendRegions.Where(item => item.ModuleController is MainModuleController).ForEach(item =>
             {
@@ -114,6 +121,12 @@ namespace EAS.LeegooBuilder.Client.GUI.Modules.Plugin
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected override void HideRegion(IRegion region, List<OpenedRegion> opendRegions)
         {
+            if (!_hidePlugInRegionWhileOtherRegionIsActive)
+            {
+                base.HideRegion(region, opendRegions);
+                return;
+            }
+            
             ShellService.SetRegionViewVisibility(region, false);
             
             // in ShowRegion() ausgeblendete Regions wieder einblenden 
